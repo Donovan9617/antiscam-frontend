@@ -1,40 +1,66 @@
-import React, { useState } from "react";
-import { Pagination, Table } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Image, Table } from "react-bootstrap";
 import { CaseActivationButton } from "../../../components/casebutton/caseactivationbutton";
 import { CaseRejectedButton } from "../../../components/casebutton/caserejectedbutton";
 import { CASE_STATUS } from "../../../config";
+import sort from "../../../svgs/sort.svg";
 
 export const CaseTable = ({ caseData }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const caseDataToShow = caseData.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(caseData.length / itemsPerPage);
+  const [caseDataToShow, setCaseDataToShow] = useState([]);
+  const [isDateReferralChronological, setIsDateReferralChronological] =
+    useState(false);
 
-  const handlePaginationClick = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  useEffect(() => {
+    setCaseDataToShow(caseData);
+  }, [caseData]);
+
+  const handleSortDateReferral = () => {
+    setIsDateReferralChronological(!isDateReferralChronological);
+    caseData.sort((a, b) => {
+      return isDateReferralChronological
+        ? a.datereferral - b.datereferral
+        : b.datereferral - a.datereferral;
+    });
+    setCaseDataToShow(caseData);
   };
+
   return (
     <div style={{ textAlign: "center" }}>
       <Table responsive>
         <thead>
           <tr style={{ backgroundColor: "#d0d0d0" }}>
+            <th>
+              Date Referral{" "}
+              <Image
+                src={sort}
+                alt="sort"
+                style={{ width: "10px" }}
+                onClick={handleSortDateReferral}
+              />
+            </th>
             <th>Case ID</th>
             <th>Description</th>
-            <th>Date Referral</th>
             <th>Scam Type</th>
             <th>Assignee</th>
-            <th>Status</th>
+            <th>
+              Status <Image src={sort} alt="sort" style={{ width: "10px" }} />
+            </th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {caseDataToShow.map((caseDataItem) => (
             <tr key={caseDataItem.caseid}>
+              <td>
+                {" "}
+                {caseDataItem.datereferral.toLocaleDateString()},{" "}
+                {caseDataItem.datereferral.toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </td>
               <td>{caseDataItem.caseid}</td>
               <td>{caseDataItem.description}</td>
-              <td>{caseDataItem.datereferral}</td>
               <td>{caseDataItem.scamtype}</td>
               <td>{caseDataItem.assignee}</td>
               <td>{caseDataItem.status}</td>
@@ -58,17 +84,6 @@ export const CaseTable = ({ caseData }) => {
           ))}
         </tbody>
       </Table>
-      <Pagination>
-        {Array.from({ length: totalPages }, (_, index) => (
-          <Pagination.Item
-            key={index + 1}
-            active={index + 1 === currentPage}
-            onClick={() => handlePaginationClick(index + 1)}
-          >
-            {index + 1}
-          </Pagination.Item>
-        ))}
-      </Pagination>
     </div>
   );
 };
