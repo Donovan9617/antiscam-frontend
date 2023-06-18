@@ -10,10 +10,10 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Row>
-        <Col lg={1} style={{ backgroundColor: "#00205B", minHeight: "100vh" }}>
+        <Col sm={1} style={{ backgroundColor: "#00205B", minHeight: "100vh" }}>
           <NavigationBar />
         </Col>
-        <Col lg={11} style={{ minHeight: "100vh" }}>
+        <Col sm={11} style={{ minHeight: "100vh" }}>
           <Routes>
             <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
             <Route path={ROUTES.NEWCASE} element={<NewCase />} />
