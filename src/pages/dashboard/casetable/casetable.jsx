@@ -1,28 +1,52 @@
-import React, { useState } from "react";
-import { Pagination, Table } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Image, Table } from "react-bootstrap";
 import { CaseActivationButton } from "../../../components/casebutton/caseactivationbutton";
 import { CaseRejectedButton } from "../../../components/casebutton/caserejectedbutton";
 import { CASE_STATUS } from "../../../config";
+import sort from "../../../svgs/sort.svg";
 
 export const CaseTable = ({ caseData }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const caseDataToShow = caseData.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(caseData.length / itemsPerPage);
+  const [caseDataToShow, setCaseDataToShow] = useState([]);
+  const [isDateReferralChronological, setIsDateReferralChronological] =
+    useState(false);
 
-  const handlePaginationClick = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const caseTableDataStyle = {
+    maxWidth: "150px",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
   };
+
+  const handleSortDateReferral = () => {
+    setIsDateReferralChronological(!isDateReferralChronological);
+    caseData.sort((a, b) => {
+      return isDateReferralChronological
+        ? a.datereferral - b.datereferral
+        : b.datereferral - a.datereferral;
+    });
+    setCaseDataToShow(caseData);
+  };
+
+  useEffect(() => {
+    setCaseDataToShow(caseData);
+  }, [caseData]);
+
   return (
     <div style={{ textAlign: "center" }}>
       <Table responsive>
         <thead>
           <tr style={{ backgroundColor: "#d0d0d0" }}>
+            <th>
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={handleSortDateReferral}
+              >
+                Date Referral{" "}
+                <Image src={sort} alt="sort" style={{ width: "10px" }} />
+              </div>
+            </th>
             <th>Case ID</th>
             <th>Description</th>
-            <th>Date Referral</th>
             <th>Scam Type</th>
             <th>Assignee</th>
             <th>Status</th>
@@ -32,12 +56,24 @@ export const CaseTable = ({ caseData }) => {
         <tbody>
           {caseDataToShow.map((caseDataItem) => (
             <tr key={caseDataItem.caseid}>
-              <td>{caseDataItem.caseid}</td>
-              <td>{caseDataItem.description}</td>
-              <td>{caseDataItem.datereferral}</td>
-              <td>{caseDataItem.scamtype}</td>
-              <td>{caseDataItem.assignee}</td>
-              <td>{caseDataItem.status}</td>
+              <td>
+                {" "}
+                {caseDataItem.datereferral.toLocaleString("en-US", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })}
+                ,{" "}
+                {caseDataItem.datereferral.toLocaleTimeString("en-US", {
+                  hour: "numeric",
+                  minute: "numeric",
+                })}
+              </td>
+              <td style={caseTableDataStyle}>{caseDataItem.caseid}</td>
+              <td style={caseTableDataStyle}>{caseDataItem.description}</td>
+              <td style={caseTableDataStyle}>{caseDataItem.scamtype}</td>
+              <td style={caseTableDataStyle}>{caseDataItem.assignee}</td>
+              <td style={caseTableDataStyle}>{caseDataItem.status}</td>
               <td style={{ width: "1%" }}>
                 {caseDataItem.status === CASE_STATUS.PENDING ? (
                   <div
@@ -58,17 +94,6 @@ export const CaseTable = ({ caseData }) => {
           ))}
         </tbody>
       </Table>
-      <Pagination>
-        {Array.from({ length: totalPages }, (_, index) => (
-          <Pagination.Item
-            key={index + 1}
-            active={index + 1 === currentPage}
-            onClick={() => handlePaginationClick(index + 1)}
-          >
-            {index + 1}
-          </Pagination.Item>
-        ))}
-      </Pagination>
     </div>
   );
 };

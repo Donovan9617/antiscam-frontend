@@ -12,7 +12,7 @@ export const Dashboard = () => {
       {
         caseid: 123,
         description: "Testing",
-        datereferral: "9:00pm",
+        datereferral: new Date(2023, 5, 10, 21, 0),
         scamtype: "Job scam",
         assignee: "Tom",
         status: "Activated",
@@ -20,7 +20,7 @@ export const Dashboard = () => {
       {
         caseid: 456,
         description: "Testing again",
-        datereferral: "10:00pm",
+        datereferral: new Date(2023, 5, 9, 22, 0),
         scamtype: "Investment scam",
         assignee: "John",
         status: "Activated",
@@ -28,20 +28,23 @@ export const Dashboard = () => {
       {
         caseid: 789,
         description: "Testing",
-        datereferral: "2:00pm",
+        datereferral: new Date(2023, 5, 9, 8, 0),
         scamtype: "Job scam",
         assignee: "Bob",
         status: "Pending",
       },
       {
         caseid: 445,
-        description: "Testing again",
-        datereferral: "5:00pm",
+        description: "Testing again testing again testing again",
+        datereferral: new Date(2023, 5, 8, 17, 0),
         scamtype: "Parcel scam",
         assignee: "Adam",
         status: "Rejected",
       },
     ];
+    data.sort((a, b) => {
+      return b.datereferral - a.datereferral;
+    });
     setCaseData(data);
   }, []);
 
