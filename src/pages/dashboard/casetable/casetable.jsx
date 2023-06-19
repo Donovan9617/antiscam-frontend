@@ -42,9 +42,7 @@ export const CaseTable = ({ caseData }) => {
             <th>Description</th>
             <th>Scam Type</th>
             <th>Assignee</th>
-            <th>
-              Status <Image src={sort} alt="sort" style={{ width: "10px" }} />
-            </th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -53,17 +51,67 @@ export const CaseTable = ({ caseData }) => {
             <tr key={caseDataItem.caseid}>
               <td>
                 {" "}
-                {caseDataItem.datereferral.toLocaleDateString()},{" "}
-                {caseDataItem.datereferral.toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
+                {caseDataItem.datereferral.toLocaleString("en-US", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })}
+                ,{" "}
+                {caseDataItem.datereferral.toLocaleTimeString("en-US", {
+                  hour: "numeric",
+                  minute: "numeric",
                 })}
               </td>
-              <td>{caseDataItem.caseid}</td>
-              <td>{caseDataItem.description}</td>
-              <td>{caseDataItem.scamtype}</td>
-              <td>{caseDataItem.assignee}</td>
-              <td>{caseDataItem.status}</td>
+              <td
+                style={{
+                  maxWidth: "200px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {caseDataItem.caseid}
+              </td>
+              <td
+                style={{
+                  maxWidth: "150px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {caseDataItem.description}
+              </td>
+              <td
+                style={{
+                  maxWidth: "150px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {caseDataItem.scamtype}
+              </td>
+              <td
+                style={{
+                  maxWidth: "150px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {caseDataItem.assignee}
+              </td>
+              <td
+                style={{
+                  maxWidth: "150px",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {caseDataItem.status}
+              </td>
               <td style={{ width: "1%" }}>
                 {caseDataItem.status === CASE_STATUS.PENDING ? (
                   <div

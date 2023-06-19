@@ -28,14 +28,14 @@ export const Dashboard = () => {
       {
         caseid: 789,
         description: "Testing",
-        datereferral: new Date(2023, 5, 9, 14, 0),
+        datereferral: new Date(2023, 5, 9, 8, 0),
         scamtype: "Job scam",
         assignee: "Bob",
         status: "Pending",
       },
       {
         caseid: 445,
-        description: "Testing again",
+        description: "Testing again testing again testing again",
         datereferral: new Date(2023, 5, 8, 17, 0),
         scamtype: "Parcel scam",
         assignee: "Adam",
