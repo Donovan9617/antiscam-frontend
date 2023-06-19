@@ -10,9 +10,12 @@ export const CaseTable = ({ caseData }) => {
   const [isDateReferralChronological, setIsDateReferralChronological] =
     useState(false);
 
-  useEffect(() => {
-    setCaseDataToShow(caseData);
-  }, [caseData]);
+  const caseTableDataStyle = {
+    maxWidth: "150px",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  };
 
   const handleSortDateReferral = () => {
     setIsDateReferralChronological(!isDateReferralChronological);
@@ -24,19 +27,23 @@ export const CaseTable = ({ caseData }) => {
     setCaseDataToShow(caseData);
   };
 
+  useEffect(() => {
+    setCaseDataToShow(caseData);
+  }, [caseData]);
+
   return (
     <div style={{ textAlign: "center" }}>
       <Table responsive>
         <thead>
           <tr style={{ backgroundColor: "#d0d0d0" }}>
             <th>
-              Date Referral{" "}
-              <Image
-                src={sort}
-                alt="sort"
-                style={{ width: "10px" }}
+              <div
+                style={{ cursor: "pointer" }}
                 onClick={handleSortDateReferral}
-              />
+              >
+                Date Referral{" "}
+                <Image src={sort} alt="sort" style={{ width: "10px" }} />
+              </div>
             </th>
             <th>Case ID</th>
             <th>Description</th>
@@ -62,56 +69,11 @@ export const CaseTable = ({ caseData }) => {
                   minute: "numeric",
                 })}
               </td>
-              <td
-                style={{
-                  maxWidth: "200px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {caseDataItem.caseid}
-              </td>
-              <td
-                style={{
-                  maxWidth: "150px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {caseDataItem.description}
-              </td>
-              <td
-                style={{
-                  maxWidth: "150px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {caseDataItem.scamtype}
-              </td>
-              <td
-                style={{
-                  maxWidth: "150px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {caseDataItem.assignee}
-              </td>
-              <td
-                style={{
-                  maxWidth: "150px",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {caseDataItem.status}
-              </td>
+              <td style={caseTableDataStyle}>{caseDataItem.caseid}</td>
+              <td style={caseTableDataStyle}>{caseDataItem.description}</td>
+              <td style={caseTableDataStyle}>{caseDataItem.scamtype}</td>
+              <td style={caseTableDataStyle}>{caseDataItem.assignee}</td>
+              <td style={caseTableDataStyle}>{caseDataItem.status}</td>
               <td style={{ width: "1%" }}>
                 {caseDataItem.status === CASE_STATUS.PENDING ? (
                   <div
