@@ -3,10 +3,10 @@ import { Image, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { CaseActivationButton } from "../../../components/casebutton/caseactivationbutton";
 import { CaseRejectedButton } from "../../../components/casebutton/caserejectedbutton";
-import { CASE_STATUS } from "../../../config";
+import { CASE_STATUS, FILTERED_CASE_STATUS } from "../../../config";
 import sort from "../../../svgs/sort.svg";
 
-export const CaseTable = ({ caseData }) => {
+export const CaseTable = ({ caseData, filteredCaseStatus }) => {
   const [caseDataToShow, setCaseDataToShow] = useState([]);
   const [isDateReferralChronological, setIsDateReferralChronological] =
     useState(false);
@@ -26,7 +26,6 @@ export const CaseTable = ({ caseData }) => {
         ? a.datereferral - b.datereferral
         : b.datereferral - a.datereferral;
     });
-    setCaseDataToShow(caseData);
   };
 
   const handleViewCaseInfo = (caseid) => {
@@ -34,15 +33,39 @@ export const CaseTable = ({ caseData }) => {
   };
 
   useEffect(() => {
-    setCaseDataToShow(caseData);
-  }, [caseData]);
+    switch (filteredCaseStatus) {
+      case FILTERED_CASE_STATUS.ACTIVATED:
+        const activatedCasesData = caseData.filter(
+          (caseItem) => caseItem.status === CASE_STATUS.ACTIVATED
+        );
+        setCaseDataToShow(activatedCasesData);
+        break;
+      case FILTERED_CASE_STATUS.PENDING:
+        const pendingCasesData = caseData.filter(
+          (caseItem) => caseItem.status === CASE_STATUS.PENDING
+        );
+        setCaseDataToShow(pendingCasesData);
+        break;
+      case FILTERED_CASE_STATUS.REJECTED:
+        const rejectedCasesData = caseData.filter(
+          (caseItem) => caseItem.status === CASE_STATUS.REJECTED
+        );
+        setCaseDataToShow(rejectedCasesData);
+        break;
+      case FILTERED_CASE_STATUS.NONE:
+        setCaseDataToShow(caseData);
+        break;
+      default:
+        break;
+    }
+  }, [caseData, filteredCaseStatus, caseDataToShow]);
 
   return (
     <div style={{ textAlign: "center" }}>
-      <Table responsive>
+      <Table bordered responsive>
         <thead>
           <tr style={{ backgroundColor: "#d0d0d0" }}>
-            <th>
+            <th style={{ width: "15%" }}>
               <div
                 style={{ cursor: "pointer" }}
                 onClick={handleSortDateReferral}
@@ -51,12 +74,12 @@ export const CaseTable = ({ caseData }) => {
                 <Image src={sort} alt="sort" style={{ width: "10px" }} />
               </div>
             </th>
-            <th>Case ID</th>
-            <th>Description</th>
-            <th>Scam Type</th>
-            <th>Assignee</th>
-            <th>Status</th>
-            <th>Action</th>
+            <th style={{ width: "10%" }}>Case ID</th>
+            <th style={{ width: "20%" }}>Description</th>
+            <th style={{ width: "15%" }}>Scam Type</th>
+            <th style={{ width: "15%" }}>Assignee</th>
+            <th style={{ width: "10%" }}>Status</th>
+            <th style={{ width: "15%" }}>Action</th>
           </tr>
         </thead>
         <tbody>

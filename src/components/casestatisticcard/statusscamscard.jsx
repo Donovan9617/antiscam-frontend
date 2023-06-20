@@ -3,7 +3,7 @@ import { CASE_STATUS } from "../../config";
 
 export const StatusScamsCard = ({ caseData }) => {
   const activatedCases = caseData.filter(
-    (caseDataItem) => caseDataItem.status === CASE_STATUS.ACCEPTED
+    (caseDataItem) => caseDataItem.status === CASE_STATUS.ACTIVATED
   );
   const pendingactivationCases = caseData.filter(
     (caseDataItem) => caseDataItem.status === CASE_STATUS.PENDING
@@ -17,7 +17,7 @@ export const StatusScamsCard = ({ caseData }) => {
       style={{ width: "18rem", marginRight: 20, marginTop: 20 }}
     >
       <Card.Body>
-        <Card.Title>No. of Cases</Card.Title>
+        <Card.Title>Total Case Status</Card.Title>
         <Card.Text>
           Activated: {activatedCases.length}
           <br />

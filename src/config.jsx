@@ -6,7 +6,14 @@ export const ROUTES = {
 };
 
 export const CASE_STATUS = {
-  ACCEPTED: "Activated",
+  ACTIVATED: "Activated",
   PENDING: "Pending",
   REJECTED: "Rejected",
+};
+
+export const FILTERED_CASE_STATUS = {
+  NONE: "none",
+  ACTIVATED: "activated",
+  PENDING: "pending",
+  REJECTED: "rejected",
 };
