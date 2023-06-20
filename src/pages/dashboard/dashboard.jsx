@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { FILTERED_CASE_STATUS } from "../../config";
 import { CaseStatistics } from "./casestatistics/casestatistics";
 import { CaseTable } from "./casetable/casetable";
+import { CaseTools } from "./casetools/casetools";
 
 export const Dashboard = () => {
   const [caseData, setCaseData] = useState([]);
+  const [filteredCaseStatus, setFilteredCaseStatus] = useState(
+    FILTERED_CASE_STATUS.NONE
+  );
 
   useEffect(() => {
     // API call to obtain the backend data in JSON
@@ -56,8 +61,17 @@ export const Dashboard = () => {
       <Container style={{ marginTop: 10 }}>
         <CaseStatistics caseData={caseData} />
       </Container>
-      <Container style={{ marginTop: 30 }}>
-        <CaseTable caseData={caseData} />
+      <Container style={{ marginTop: 15 }}>
+        <CaseTools
+          filteredCaseStatus={filteredCaseStatus}
+          setFilteredCaseStatus={setFilteredCaseStatus}
+        />
+      </Container>
+      <Container style={{ marginTop: 15 }}>
+        <CaseTable
+          caseData={caseData}
+          filteredCaseStatus={filteredCaseStatus}
+        />
       </Container>
     </Container>
   );
