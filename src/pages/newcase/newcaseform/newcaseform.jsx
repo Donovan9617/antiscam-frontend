@@ -6,15 +6,13 @@ export const NewCaseForm = () => {
       <Form>
         <Row className="mb-3">
           <Form.Group as={Col}>
-            <Form.Label>Case ID</Form.Label>
-            <Form.Control type="text" placeholder="Enter Case ID..." />
-          </Form.Group>
-
-          <Form.Group as={Col}>
             <Form.Label>Date Referral</Form.Label>
             <Form.Control type="date" placeholder="Enter date referral..." />
           </Form.Group>
-
+          <Form.Group as={Col}>
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control type="number" placeholder="Enter Phone Number..." />
+          </Form.Group>
           <Form.Group as={Col}>
             <Form.Label>Scam Type</Form.Label>
             <Form.Select>
@@ -25,29 +23,24 @@ export const NewCaseForm = () => {
             </Form.Select>
           </Form.Group>
         </Row>
-
         <Row className="mb-3">
           <Form.Group as={Col}>
-            <Form.Label>Phone Number</Form.Label>
-            <Form.Control type="number" placeholder="Enter Phone Number..." />
+            <Form.Label>Account Bank</Form.Label>
+            <Form.Control type="text" placeholder="Enter Account Bank..." />
           </Form.Group>
-
           <Form.Group as={Col}>
             <Form.Label>Account Number</Form.Label>
             <Form.Control type="number" placeholder="Enter Amount Number..." />
           </Form.Group>
-
           <Form.Group as={Col}>
             <Form.Label>Amount Scammed (S$)</Form.Label>
             <Form.Control type="number" placeholder="Enter Amount Scammed..." />
           </Form.Group>
         </Row>
-
         <Form.Group className="mb-3">
           <Form.Label>Website URL</Form.Label>
           <Form.Control type="url" placeholder="Enter Website URL..." />
         </Form.Group>
-
         <Form.Group className="mb-3">
           <Form.Label>Case Description</Form.Label>
           <Form.Control
@@ -56,7 +49,6 @@ export const NewCaseForm = () => {
             style={{ height: "100px" }}
           />
         </Form.Group>
-
         <Container style={{ textAlign: "center", marginTop: "10px" }}>
           <Button variant="primary" type="submit">
             Activate Case

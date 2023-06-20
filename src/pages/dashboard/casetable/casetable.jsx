@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Image, Table } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { CaseActivationButton } from "../../../components/casebutton/caseactivationbutton";
 import { CaseRejectedButton } from "../../../components/casebutton/caserejectedbutton";
 import { CASE_STATUS, FILTERED_CASE_STATUS } from "../../../config";
@@ -9,6 +10,7 @@ export const CaseTable = ({ caseData, filteredCaseStatus }) => {
   const [caseDataToShow, setCaseDataToShow] = useState([]);
   const [isDateReferralChronological, setIsDateReferralChronological] =
     useState(false);
+  const navigate = useNavigate();
 
   const caseTableDataStyle = {
     maxWidth: "150px",
@@ -24,6 +26,10 @@ export const CaseTable = ({ caseData, filteredCaseStatus }) => {
         ? a.datereferral - b.datereferral
         : b.datereferral - a.datereferral;
     });
+  };
+
+  const handleViewCaseInfo = (caseid) => {
+    return navigate(`/case/${caseid}`);
   };
 
   useEffect(() => {
@@ -92,7 +98,12 @@ export const CaseTable = ({ caseData, filteredCaseStatus }) => {
                   minute: "numeric",
                 })}
               </td>
-              <td style={caseTableDataStyle}>{caseDataItem.caseid}</td>
+              <td
+                style={{ ...caseTableDataStyle, cursor: "pointer" }}
+                onClick={() => handleViewCaseInfo(caseDataItem.caseid)}
+              >
+                <u>{caseDataItem.caseid}</u>
+              </td>
               <td style={caseTableDataStyle}>{caseDataItem.description}</td>
               <td style={caseTableDataStyle}>{caseDataItem.scamtype}</td>
               <td style={caseTableDataStyle}>{caseDataItem.assignee}</td>

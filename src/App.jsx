@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Row } from "react-bootstrap";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ROUTES } from "./config";
+import { CaseInfo } from "./pages/caseinfo/caseinfo";
 import { Dashboard } from "./pages/dashboard/dashboard";
 import { NavigationBar } from "./pages/navigationbar/navigationbar";
 import { NewCase } from "./pages/newcase/newcase";
@@ -17,6 +18,7 @@ export const App = () => {
           <Routes>
             <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
             <Route path={ROUTES.NEWCASE} element={<NewCase />} />
+            <Route path={ROUTES.CASEINFO} element={<CaseInfo />} />
           </Routes>
         </Col>
       </Row>
