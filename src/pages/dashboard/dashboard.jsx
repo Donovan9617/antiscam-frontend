@@ -15,33 +15,33 @@ export const Dashboard = () => {
     // API call to obtain the backend data in JSON
     const data = [
       {
+        datereferral: new Date(2023, 5, 10, 21, 0),
         caseid: 123,
         description: "Testing",
-        datereferral: new Date(2023, 5, 10, 21, 0),
         scamtype: "Job scam",
         assignee: "Tom",
         status: "Activated",
       },
       {
+        datereferral: new Date(2023, 5, 9, 22, 0),
         caseid: 456,
         description: "Testing again",
-        datereferral: new Date(2023, 5, 9, 22, 0),
         scamtype: "Investment scam",
         assignee: "John",
         status: "Activated",
       },
       {
+        datereferral: new Date(2023, 5, 9, 8, 0),
         caseid: 789,
         description: "Testing",
-        datereferral: new Date(2023, 5, 9, 8, 0),
         scamtype: "Job scam",
         assignee: "Bob",
         status: "Pending",
       },
       {
+        datereferral: new Date(2023, 5, 8, 17, 0),
         caseid: 445,
         description: "Testing again testing again testing again",
-        datereferral: new Date(2023, 5, 8, 17, 0),
         scamtype: "Parcel scam",
         assignee: "Adam",
         status: "Rejected",

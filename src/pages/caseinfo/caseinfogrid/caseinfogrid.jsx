@@ -3,11 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 export const CaseInfoGrid = ({ caseInformation }) => {
   return (
     <Container style={{ marginTop: "30px" }}>
-      <Row>
-        <Col>
-          <h6>Case ID:</h6>
-          <p>{caseInformation && caseInformation.caseid}</p>
-        </Col>
+      <Row className="mb-4">
         <Col>
           <h6>Date Referral:</h6>
           <p>
@@ -27,9 +23,31 @@ export const CaseInfoGrid = ({ caseInformation }) => {
           </p>
         </Col>
         <Col>
+          <h6>Phone Number:</h6>
+          <p>{caseInformation && caseInformation.phonenumber}</p>
+        </Col>
+        <Col>
           <h6>Scam Type:</h6>
           <p>{caseInformation && caseInformation.scamtype}</p>
         </Col>
+      </Row>
+      <Row className="mb-4">
+        <Col>
+          <h6>Account Bank:</h6>
+          <p>{caseInformation && caseInformation.accountbank}</p>
+        </Col>
+        <Col>
+          <h6>Account Number:</h6>
+          <p>{caseInformation && caseInformation.accountnumber}</p>
+        </Col>
+        <Col>
+          <h6>Amount Scammed (S$):</h6>
+          <p>{caseInformation && caseInformation.amountscammed}</p>
+        </Col>
+      </Row>
+      <Row className="mb-4">
+        <h6>Case Description:</h6>
+        <p>{caseInformation && caseInformation.description}</p>
       </Row>
     </Container>
   );

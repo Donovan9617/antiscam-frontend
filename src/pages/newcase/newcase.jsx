@@ -7,7 +7,7 @@ import { NewCaseForm } from "./newcaseform/newcaseform";
 export const NewCase = () => {
   const navigate = useNavigate();
 
-  const backToDashboardButtonHandler = () => {
+  const handleBackToDashboard = () => {
     navigate(ROUTES.DASHBOARD);
   };
   return (
@@ -16,7 +16,7 @@ export const NewCase = () => {
         style={{ marginTop: 20, display: "flex", alignItems: "center" }}
       >
         <Button
-          onClick={backToDashboardButtonHandler}
+          onClick={handleBackToDashboard}
           style={{ backgroundColor: "transparent" }}
         >
           <Image
