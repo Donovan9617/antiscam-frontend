@@ -2,10 +2,10 @@ import { Button, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../config";
 
-export const BackArrowButton = () => {
+export const BackArrowButton: React.FC = () => {
   const navigate = useNavigate();
 
-  const handlePreviousButton = () => {
+  const handlePreviousButton: () => void = () => {
     // Would be /dashboard instead later on when there is authentication
     navigate(ROUTES.DASHBOARD);
   };

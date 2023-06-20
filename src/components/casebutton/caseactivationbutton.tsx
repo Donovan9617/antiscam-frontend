@@ -2,10 +2,10 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../config";
 
-export const CaseActivationButton = () => {
+export const CaseActivationButton: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleCreateCase = () => {
+  const handleCreateCase: () => void = () => {
     navigate(ROUTES.NEWCASE);
   };
 

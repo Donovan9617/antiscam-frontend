@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Nav } from "react-bootstrap";
+import { NAV_ITEMS_ENUM } from "../../config";
+import { NavItemType } from "../../types/types";
 
-export const NavigationBar = () => {
-  const [activeNavItem, setActiveNavItem] = useState("dashboard");
-  const handleNavItemClick = (eventKey) => {
+export const NavigationBar: React.FC = () => {
+  const [activeNavItem, setActiveNavItem] = useState<NavItemType>(
+    NAV_ITEMS_ENUM.DASHBOARD
+  );
+  const handleNavItemClick: (eventKey: NavItemType) => void = (eventKey) => {
     setActiveNavItem(eventKey);
   };
+
   return (
     <Nav variant="pills" className="flex-column">
       <Nav.Item style={{ marginTop: "20px" }}>
@@ -13,8 +18,8 @@ export const NavigationBar = () => {
         <Nav.Link
           href="/"
           style={{ color: "white" }}
-          active={activeNavItem === "dashboard"}
-          onClick={() => handleNavItemClick("dashboard")}
+          active={activeNavItem === NAV_ITEMS_ENUM.DASHBOARD}
+          onClick={() => handleNavItemClick(NAV_ITEMS_ENUM.DASHBOARD)}
         >
           Dashboard
         </Nav.Link>
@@ -23,7 +28,7 @@ export const NavigationBar = () => {
         <Nav.Link
           style={{ color: "white" }}
           active={activeNavItem === "second"}
-          onClick={() => handleNavItemClick("second")}
+          onClick={() => handleNavItemClick(NAV_ITEMS_ENUM.SECOND)}
         >
           Tab 2
         </Nav.Link>

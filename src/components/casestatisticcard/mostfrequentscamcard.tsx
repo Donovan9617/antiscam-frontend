@@ -1,8 +1,15 @@
 import { Card } from "react-bootstrap";
+import { CaseDataType1 } from "../../types/types";
 
-export const MostFrequentScamCard = ({ caseData }) => {
+interface MostPopularScamCardProps {
+  caseData: CaseDataType1[];
+}
+
+export const MostFrequentScamCard: React.FC<MostPopularScamCardProps> = ({
+  caseData,
+}: MostPopularScamCardProps) => {
   // Count the occurrences of each scam type
-  const scamTypeCounts = {};
+  const scamTypeCounts: { [key: string]: number } = {};
   caseData.forEach((caseDataItem) => {
     const scamType = caseDataItem.scamtype;
     if (scamTypeCounts[scamType]) {

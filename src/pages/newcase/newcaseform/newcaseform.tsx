@@ -1,6 +1,6 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
-export const NewCaseForm = () => {
+export const NewCaseForm: React.FC = () => {
   return (
     <Container>
       <Form>

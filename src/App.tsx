@@ -7,7 +7,7 @@ import { Dashboard } from "./pages/dashboard/dashboard";
 import { NavigationBar } from "./pages/navigationbar/navigationbar";
 import { NewCase } from "./pages/newcase/newcase";
 
-export const App = () => {
+export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Row>
