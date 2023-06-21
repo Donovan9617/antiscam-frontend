@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { CASE_STATUS_ENUM, FILTERED_CASE_STATUS_ENUM } from "../../config";
+import { CASE_STATUS_ENUM, FILTERED_CASE_STATUS_ENUM } from "../../types/enums";
 import { CaseDataType1, FilteredCaseStatusType } from "../../types/types";
 import { CaseStatistics } from "./casestatistics/casestatistics";
 import { CaseTable } from "./casetable/casetable";

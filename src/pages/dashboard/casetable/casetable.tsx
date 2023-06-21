@@ -3,10 +3,13 @@ import { Image, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import sort from "../../../assets/svgs/sort.svg";
-import { CaseActivationButton } from "../../../components/casebutton/caseactivationbutton";
-import { CaseRejectedButton } from "../../../components/casebutton/caserejectedbutton";
-import { CASE_STATUS_ENUM, FILTERED_CASE_STATUS_ENUM } from "../../../config";
+import {
+  CASE_STATUS_ENUM,
+  FILTERED_CASE_STATUS_ENUM,
+} from "../../../types/enums";
 import { CaseDataType1, FilteredCaseStatusType } from "../../../types/types";
+import { CaseActivationButton } from "./casebutton/caseactivationbutton";
+import { CaseRejectedButton } from "./casebutton/caserejectedbutton";
 
 interface CaseTableProps {
   caseData: CaseDataType1[];

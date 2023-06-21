@@ -1,7 +1,7 @@
 import { Container, Row } from "react-bootstrap";
-import { MostFrequentScamCard } from "../../../components/casestatisticcard/mostfrequentscamcard";
-import { StatusScamsCard } from "../../../components/casestatisticcard/statusscamscard";
 import { CaseDataType1 } from "../../../types/types";
+import { MostFrequentScamCard } from "./casestatisticcard/mostfrequentscamcard";
+import { StatusScamsCard } from "./casestatisticcard/statusscamscard";
 
 interface CaseStatisticsProps {
   caseData: CaseDataType1[];
