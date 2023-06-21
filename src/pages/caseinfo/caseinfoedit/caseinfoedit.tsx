@@ -4,7 +4,7 @@ import { CaseInfoDataType } from "../../../types/types";
 
 interface CaseInfoEditProps {
   caseInformation: CaseInfoDataType | undefined;
-  setEditMode: (editMode: Boolean) => void;
+  setEditMode: (editMode: boolean) => void;
 }
 
 export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({

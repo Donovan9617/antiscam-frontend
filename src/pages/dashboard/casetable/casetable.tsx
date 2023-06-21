@@ -21,10 +21,11 @@ export const CaseTable: React.FC<CaseTableProps> = ({
     CaseDataType1[] | undefined
   >([]);
   const [isDateReferralChronological, setIsDateReferralChronological] =
-    useState<Boolean>(false);
+    useState<boolean>(false);
   const navigate = useNavigate();
 
-  const caseTableDataStyle = {
+  const caseTableStyle: React.CSSProperties = { textAlign: "center" };
+  const caseTableDataStyle: React.CSSProperties = {
     maxWidth: "150px",
     overflow: "hidden",
     textOverflow: "ellipsis",
@@ -73,7 +74,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({
   }, [caseData, filteredCaseStatus, caseDataToShow]);
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={caseTableStyle}>
       <Table bordered responsive>
         <thead>
           <tr style={{ backgroundColor: "#d0d0d0" }}>

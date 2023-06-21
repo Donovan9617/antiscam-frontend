@@ -14,7 +14,7 @@ export const CaseInfo: React.FC = () => {
   const [caseInformation, setCaseInformation] = useState<
     CaseInfoDataType | undefined
   >();
-  const [editMode, setEditMode] = useState<Boolean>(false);
+  const [editMode, setEditMode] = useState<boolean>(false);
 
   const handleBack: () => void = () => {
     editMode ? setEditMode(!editMode) : navigate(ROUTES.DASHBOARD);
