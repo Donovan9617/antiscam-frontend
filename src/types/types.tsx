@@ -8,9 +8,9 @@ export type FilteredCaseStatusType =
   | "pending"
   | "rejected";
 
-export interface CaseDataType1 {
+export interface CaseDataDashboardType {
   datereferral: Date;
-  caseid: number;
+  caseid: string;
   description: string;
   scamtype: string;
   assignee: string;
@@ -18,12 +18,14 @@ export interface CaseDataType1 {
 }
 
 export interface CaseInfoDataType {
-  caseid: number;
+  caseid: string;
   datereferral: Date;
   phonenumber: number;
   scamtype: string;
   accountbank: string;
   accountnumber: string;
   amountscammed: number;
+  assignee: string;
+  status: CaseStatusType;
   description: string;
 }

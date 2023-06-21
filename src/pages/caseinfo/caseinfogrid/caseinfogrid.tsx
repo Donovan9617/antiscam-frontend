@@ -53,6 +53,16 @@ export const CaseInfoGrid: React.FC<CaseInfoGridProps> = ({
         </Col>
       </Row>
       <Row className="mb-4">
+        <Col>
+          <h6>Assignee:</h6>
+          <p>{caseInformation && caseInformation.assignee}</p>
+        </Col>
+        <Col>
+          <h6>Status:</h6>
+          <p>{caseInformation && caseInformation.status}</p>
+        </Col>
+      </Row>
+      <Row className="mb-4">
         <h6>Case Description:</h6>
         <p>{caseInformation && caseInformation.description}</p>
       </Row>

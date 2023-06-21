@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { CaseInfoDataType } from "../../../types/types";
+import { CaseInfoDataType, CaseStatusType } from "../../../types/types";
 
 interface CaseInfoEditProps {
   caseInformation: CaseInfoDataType | undefined;
@@ -34,7 +34,7 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
                   name="datereferral"
                   value={editedCaseInformation.datereferral
                     .toISOString()
-                    .substr(0, 10)}
+                    .substring(0, 10)}
                   onChange={(e) => {
                     setEditedCaseInformation({
                       ...editedCaseInformation,
@@ -59,7 +59,15 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
               </Form.Group>
               <Form.Group as={Col}>
                 <Form.Label>Scam Type</Form.Label>
-                <Form.Select value={editedCaseInformation.scamtype}>
+                <Form.Select
+                  defaultValue={editedCaseInformation.scamtype}
+                  onChange={(e) => {
+                    setEditedCaseInformation({
+                      ...editedCaseInformation,
+                      scamtype: e.target.value,
+                    });
+                  }}
+                >
                   <option>Job Scam</option>
                   <option>Love Scam</option>
                   <option>Parcel Scam</option>
@@ -109,6 +117,38 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
                     });
                   }}
                 />
+              </Form.Group>
+            </Row>
+            <Row className="mb-4">
+              <Form.Group as={Col}>
+                <Form.Label>Assignee</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="assignee"
+                  value={editedCaseInformation.assignee}
+                  onChange={(e) => {
+                    setEditedCaseInformation({
+                      ...editedCaseInformation,
+                      assignee: e.target.value,
+                    });
+                  }}
+                />
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label>Status</Form.Label>
+                <Form.Select
+                  defaultValue={editedCaseInformation.status}
+                  onChange={(e) => {
+                    setEditedCaseInformation({
+                      ...editedCaseInformation,
+                      status: e.target.value as CaseStatusType,
+                    });
+                  }}
+                >
+                  <option>Activated</option>
+                  <option>Pending</option>
+                  <option>Rejected</option>
+                </Form.Select>
               </Form.Group>
             </Row>
             <Row className="mb-4">

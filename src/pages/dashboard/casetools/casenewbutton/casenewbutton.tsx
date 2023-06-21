@@ -6,5 +6,9 @@ export const CaseNewButton: React.FC = () => {
   const handleNewCaseClick: () => void = () => {
     navigate("new-case");
   };
-  return <Button onClick={handleNewCaseClick}>+ New Case</Button>;
+  return (
+    <Button onClick={handleNewCaseClick} style={{ marginRight: "10px" }}>
+      + New Case
+    </Button>
+  );
 };

@@ -1,17 +1,56 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { v4 } from "uuid";
 
 export const NewCaseForm: React.FC = () => {
+  const currentDate = new Date();
+  const dateString = currentDate.toISOString().substring(0, 10);
+  const caseId = v4();
+
+  const handleCreateCase: (
+    event: React.FormEvent<HTMLFormElement>
+  ) => void = async (event) => {
+    event.preventDefault();
+    // const form = event.currentTarget;
+    // try {
+    //   const response = await fetch("<API_ENDPOINT_URL>", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       dateReferral: form.dateReferral.value,
+    //       caseId: form.caseId.value,
+    //       scamType: form.scamType.value,
+    //       accountBank: form.accountBank.value,
+    //       accountNumber: form.accountNumber.value,
+    //       amountScammed: form.amountScammed.value,
+    //       phoneNumber: form.phoneNumber.value,
+    //       assignee: form.assignee.value,
+    //       status: form.status.value,
+    //       caseDescription: form.caseDescription.value,
+    //     }),
+    //   });
+
+    //   if (!response.ok) {
+    //     throw new Error("Failed to save case");
+    //   }
+    //   console.log("Case saved successfully!");
+    // } catch (error) {
+    //   console.error("Failed to save case:", error);
+    // }
+  };
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleCreateCase}>
         <Row className="mb-3">
           <Form.Group as={Col}>
             <Form.Label>Date Referral</Form.Label>
-            <Form.Control type="date" placeholder="Enter date referral..." />
+            <Form.Control type="date" value={dateString} />
           </Form.Group>
           <Form.Group as={Col}>
-            <Form.Label>Phone Number</Form.Label>
-            <Form.Control type="number" placeholder="Enter Phone Number..." />
+            <Form.Label>Case ID</Form.Label>
+            <Form.Control type="string" value={caseId} disabled={true} />
           </Form.Group>
           <Form.Group as={Col}>
             <Form.Label>Scam Type</Form.Label>
@@ -37,10 +76,24 @@ export const NewCaseForm: React.FC = () => {
             <Form.Control type="number" placeholder="Enter Amount Scammed..." />
           </Form.Group>
         </Row>
-        <Form.Group className="mb-3">
-          <Form.Label>Website URL</Form.Label>
-          <Form.Control type="url" placeholder="Enter Website URL..." />
-        </Form.Group>
+        <Row className="mb-3">
+          <Form.Group as={Col}>
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control type="number" placeholder="Enter Phone Number..." />
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label>Assignee</Form.Label>
+            <Form.Control type="text" placeholder="Enter Assignee Name..." />
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label>Status</Form.Label>
+            <Form.Select>
+              <option>Pending</option>
+              <option>Activated</option>
+              <option>Rejected</option>
+            </Form.Select>
+          </Form.Group>
+        </Row>
         <Form.Group className="mb-3">
           <Form.Label>Case Description</Form.Label>
           <Form.Control
@@ -51,7 +104,7 @@ export const NewCaseForm: React.FC = () => {
         </Form.Group>
         <Container style={{ textAlign: "center", marginTop: "10px" }}>
           <Button variant="primary" type="submit">
-            Activate Case
+            + Create Case
           </Button>
         </Container>
       </Form>

@@ -7,12 +7,15 @@ import {
   CASE_STATUS_ENUM,
   FILTERED_CASE_STATUS_ENUM,
 } from "../../../types/enums";
-import { CaseDataType1, FilteredCaseStatusType } from "../../../types/types";
+import {
+  CaseDataDashboardType,
+  FilteredCaseStatusType,
+} from "../../../types/types";
 import { CaseActivationButton } from "./casebutton/caseactivationbutton";
 import { CaseRejectedButton } from "./casebutton/caserejectedbutton";
 
 interface CaseTableProps {
-  caseData: CaseDataType1[];
+  caseData: CaseDataDashboardType[];
   filteredCaseStatus: FilteredCaseStatusType;
 }
 
@@ -21,7 +24,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({
   filteredCaseStatus,
 }: CaseTableProps) => {
   const [caseDataToShow, setCaseDataToShow] = useState<
-    CaseDataType1[] | undefined
+    CaseDataDashboardType[] | undefined
   >([]);
   const [isDateReferralChronological, setIsDateReferralChronological] =
     useState<boolean>(false);
@@ -44,7 +47,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({
     });
   };
 
-  const handleViewCaseInfo: (caseid: number) => void = (caseid) => {
+  const handleViewCaseInfo: (caseid: string) => void = (caseid) => {
     return navigate(`/case/${caseid}`);
   };
 
@@ -103,19 +106,6 @@ export const CaseTable: React.FC<CaseTableProps> = ({
             (caseDataToShow.length > 0 ? (
               caseDataToShow.map((caseDataItem) => (
                 <tr key={caseDataItem.caseid}>
-                  <td>
-                    {" "}
-                    {caseDataItem.datereferral.toLocaleString("en-US", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                    })}
-                    ,{" "}
-                    {caseDataItem.datereferral.toLocaleTimeString("en-US", {
-                      hour: "numeric",
-                      minute: "numeric",
-                    })}
-                  </td>
                   <td
                     style={{
                       ...caseTableDataStyle,
@@ -124,7 +114,22 @@ export const CaseTable: React.FC<CaseTableProps> = ({
                     }}
                     onClick={() => handleViewCaseInfo(caseDataItem.caseid)}
                   >
-                    <u>{caseDataItem.caseid}</u>
+                    <u>
+                      {" "}
+                      {caseDataItem.datereferral.toLocaleString("en-US", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      })}
+                      ,{" "}
+                      {caseDataItem.datereferral.toLocaleTimeString("en-US", {
+                        hour: "numeric",
+                        minute: "numeric",
+                      })}
+                    </u>
+                  </td>
+                  <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
+                    {caseDataItem.caseid}
                   </td>
                   <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
                     {caseDataItem.description}

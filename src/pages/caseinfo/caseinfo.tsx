@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import back from "../../assets/images/back.png";
 import edit from "../../assets/images/edit.png";
 import { ROUTES } from "../../config";
+import { CASE_STATUS_ENUM } from "../../types/enums";
 import { CaseInfoDataType } from "../../types/types";
 import { CaseInfoEdit } from "./caseinfoedit/caseinfoedit";
 import { CaseInfoGrid } from "./caseinfogrid/caseinfogrid";
@@ -28,13 +29,15 @@ export const CaseInfo: React.FC = () => {
     // API call to backend to obtain JSON with this obtained caseid
     // Since no DB yet, we assume this is the returned data
     const data: CaseInfoDataType = {
-      caseid: 123,
+      caseid: "c17ff314-87f0-49e5-8adc-a5c3dceaa44b",
       datereferral: new Date(2023, 5, 10, 21, 0),
       phonenumber: 91234567,
-      scamtype: "Job scam",
+      scamtype: "Job Scam",
       accountbank: "POSB",
       accountnumber: "322-772-441",
       amountscammed: 90000,
+      assignee: "Tom",
+      status: CASE_STATUS_ENUM.ACTIVATED,
       description: "Testing",
     };
     setCaseInformation(data);

@@ -11,7 +11,7 @@ export const CaseActivationButton: React.FC = () => {
   };
 
   const handleConfirmActivate: () => void = () => {
-    // Send API to the backend to update the status of the case to Accepted
+    // Send API to the backend to update the status of the case to Activated
     setShowConfirmation(false);
   };
 
