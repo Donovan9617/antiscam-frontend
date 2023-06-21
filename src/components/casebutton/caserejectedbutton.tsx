@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-export const CaseRejectedButton = () => {
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const handleReject = () => {
+export const CaseRejectedButton: React.FC = () => {
+  const [showConfirmation, setShowConfirmation] = useState<boolean | undefined>(
+    false
+  );
+  const handleReject: () => void = () => {
     setShowConfirmation(true);
   };
-  const handleConfirmReject = () => {
+  const handleConfirmReject: () => void = () => {
     // Perform the reject action here
     // ...
     setShowConfirmation(false);
   };
-  const handleCloseConfirmation = () => {
+  const handleCloseConfirmation: () => void = () => {
     setShowConfirmation(false);
   };
 

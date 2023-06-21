@@ -1,6 +1,13 @@
 import { Col, Container, Row } from "react-bootstrap";
+import { CaseInfoDataType } from "../../../types/types";
 
-export const CaseInfoGrid = ({ caseInformation }) => {
+interface CaseInfoGridProps {
+  caseInformation: CaseInfoDataType | undefined;
+}
+
+export const CaseInfoGrid: React.FC<CaseInfoGridProps> = ({
+  caseInformation,
+}: CaseInfoGridProps) => {
   return (
     <Container style={{ marginTop: "30px" }}>
       <Row className="mb-4">

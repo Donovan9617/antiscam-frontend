@@ -1,15 +1,22 @@
 import { Card } from "react-bootstrap";
-import { CASE_STATUS } from "../../config";
+import { CASE_STATUS_ENUM } from "../../config";
+import { CaseDataType1 } from "../../types/types";
 
-export const StatusScamsCard = ({ caseData }) => {
+interface StatusScamCard {
+  caseData: CaseDataType1[];
+}
+
+export const StatusScamsCard: React.FC<StatusScamCard> = ({
+  caseData,
+}: StatusScamCard) => {
   const activatedCases = caseData.filter(
-    (caseDataItem) => caseDataItem.status === CASE_STATUS.ACTIVATED
+    (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.ACTIVATED
   );
   const pendingactivationCases = caseData.filter(
-    (caseDataItem) => caseDataItem.status === CASE_STATUS.PENDING
+    (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.PENDING
   );
   const rejectedCases = caseData.filter(
-    (caseDataItem) => caseDataItem.status === CASE_STATUS.REJECTED
+    (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.REJECTED
   );
   return (
     <Card
