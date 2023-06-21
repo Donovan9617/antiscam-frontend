@@ -44,7 +44,7 @@ export const Dashboard: React.FC = () => {
         description: "Testing again testing again testing again",
         scamtype: "Parcel scam",
         assignee: "Adam",
-        status: CASE_STATUS_ENUM.REJECTED,
+        status: CASE_STATUS_ENUM.PENDING,
       },
     ];
     data.sort((a, b) => {

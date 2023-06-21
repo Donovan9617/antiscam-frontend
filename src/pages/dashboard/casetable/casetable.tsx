@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Image, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
+import sort from "../../../assets/svgs/sort.svg";
 import { CaseActivationButton } from "../../../components/casebutton/caseactivationbutton";
 import { CaseRejectedButton } from "../../../components/casebutton/caserejectedbutton";
 import { CASE_STATUS_ENUM, FILTERED_CASE_STATUS_ENUM } from "../../../config";
-import sort from "../../../svgs/sort.svg";
 import { CaseDataType1, FilteredCaseStatusType } from "../../../types/types";
 
 interface CaseTableProps {
@@ -96,59 +96,71 @@ export const CaseTable: React.FC<CaseTableProps> = ({
         </thead>
         <tbody>
           {caseDataToShow &&
-            caseDataToShow.map((caseDataItem) => (
-              <tr key={caseDataItem.caseid}>
-                <td>
-                  {" "}
-                  {caseDataItem.datereferral.toLocaleString("en-US", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric",
-                  })}
-                  ,{" "}
-                  {caseDataItem.datereferral.toLocaleTimeString("en-US", {
-                    hour: "numeric",
-                    minute: "numeric",
-                  })}
-                </td>
-                <td
-                  style={{
-                    ...caseTableDataStyle,
-                    cursor: "pointer",
-                    whiteSpace: "nowrap",
-                  }}
-                  onClick={() => handleViewCaseInfo(caseDataItem.caseid)}
-                >
-                  <u>{caseDataItem.caseid}</u>
-                </td>
-                <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
-                  {caseDataItem.description}
-                </td>
-                <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
-                  {caseDataItem.scamtype}
-                </td>
-                <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
-                  {caseDataItem.assignee}
-                </td>
-                <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
-                  {caseDataItem.status}
-                </td>
-                <td style={{ width: "1%" }}>
-                  {caseDataItem.status === CASE_STATUS_ENUM.PENDING ? (
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        gap: "5px",
-                      }}
-                    >
-                      <CaseActivationButton />
-                      <CaseRejectedButton />
-                    </div>
-                  ) : (
-                    "-"
-                  )}
-                </td>
+            (caseDataToShow.length > 0 ? (
+              caseDataToShow.map((caseDataItem) => (
+                <tr key={caseDataItem.caseid}>
+                  <td>
+                    {" "}
+                    {caseDataItem.datereferral.toLocaleString("en-US", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })}
+                    ,{" "}
+                    {caseDataItem.datereferral.toLocaleTimeString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                    })}
+                  </td>
+                  <td
+                    style={{
+                      ...caseTableDataStyle,
+                      cursor: "pointer",
+                      whiteSpace: "nowrap",
+                    }}
+                    onClick={() => handleViewCaseInfo(caseDataItem.caseid)}
+                  >
+                    <u>{caseDataItem.caseid}</u>
+                  </td>
+                  <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
+                    {caseDataItem.description}
+                  </td>
+                  <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
+                    {caseDataItem.scamtype}
+                  </td>
+                  <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
+                    {caseDataItem.assignee}
+                  </td>
+                  <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
+                    {caseDataItem.status}
+                  </td>
+                  <td style={{ width: "1%" }}>
+                    {caseDataItem.status === CASE_STATUS_ENUM.PENDING ? (
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          gap: "5px",
+                        }}
+                      >
+                        <CaseActivationButton />
+                        <CaseRejectedButton />
+                      </div>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr
+                style={{
+                  ...caseTableDataStyle,
+                  whiteSpace: "nowrap",
+                  textAlign: "center",
+                }}
+              >
+                <td colSpan={7}>No current cases</td>
               </tr>
             ))}
         </tbody>
