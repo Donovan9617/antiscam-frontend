@@ -56,7 +56,10 @@ export const NewCaseForm: React.FC = () => {
             <Form.Label>Scam Type</Form.Label>
             <Form.Select>
               <option>Job Scam</option>
+              <option>Investment Scam</option>
               <option>Love Scam</option>
+              <option>E-Commerce Scam</option>
+              <option>Lottery Scam</option>
               <option>Parcel Scam</option>
               <option>Others</option>
             </Form.Select>

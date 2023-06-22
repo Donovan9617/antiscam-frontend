@@ -8,11 +8,20 @@ export type FilteredCaseStatusType =
   | "pending"
   | "rejected";
 
+export type CaseScamTypeType =
+  | "Job Scam"
+  | "Investment Scam"
+  | "Love Scam"
+  | "E-Commerce Scam"
+  | "Lottery Scam"
+  | "Parcel Scam"
+  | "Others";
+
 export interface CaseDataDashboardType {
   datereferral: Date;
   caseid: string;
   description: string;
-  scamtype: string;
+  scamtype: CaseScamTypeType;
   assignee: string;
   status: CaseStatusType;
 }
@@ -21,7 +30,7 @@ export interface CaseInfoDataType {
   caseid: string;
   datereferral: Date;
   phonenumber: number;
-  scamtype: string;
+  scamtype: CaseScamTypeType;
   accountbank: string;
   accountnumber: string;
   amountscammed: number;

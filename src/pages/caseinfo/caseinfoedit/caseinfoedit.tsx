@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { CaseInfoDataType, CaseStatusType } from "../../../types/types";
+import {
+  CaseInfoDataType,
+  CaseScamTypeType,
+  CaseStatusType,
+} from "../../../types/types";
 
 interface CaseInfoEditProps {
   caseInformation: CaseInfoDataType | undefined;
@@ -64,12 +68,15 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
                   onChange={(e) => {
                     setEditedCaseInformation({
                       ...editedCaseInformation,
-                      scamtype: e.target.value,
+                      scamtype: e.target.value as CaseScamTypeType,
                     });
                   }}
                 >
                   <option>Job Scam</option>
+                  <option>Investment Scam</option>
                   <option>Love Scam</option>
+                  <option>E-Commerce Scam</option>
+                  <option>Lottery Scam</option>
                   <option>Parcel Scam</option>
                   <option>Others</option>
                 </Form.Select>
