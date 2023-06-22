@@ -4,7 +4,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import back from "../../assets/images/back.png";
 import edit from "../../assets/images/edit.png";
 import { ROUTES } from "../../config";
-import { CASE_SCAMTYPE_ENUM, CASE_STATUS_ENUM } from "../../types/enums";
+import {
+  BANK_ACCOUNT_ENUM,
+  CASE_SCAMTYPE_ENUM,
+  CASE_STATUS_ENUM,
+} from "../../types/enums";
 import { CaseInfoDataType } from "../../types/types";
 import { CaseInfoEdit } from "./caseinfoedit/caseinfoedit";
 import { CaseInfoGrid } from "./caseinfogrid/caseinfogrid";
@@ -33,7 +37,7 @@ export const CaseInfo: React.FC = () => {
       datereferral: new Date(2023, 5, 10, 21, 0),
       phonenumber: 91234567,
       scamtype: CASE_SCAMTYPE_ENUM.JOB_SCAM,
-      accountbank: "POSB",
+      bankaccount: BANK_ACCOUNT_ENUM.DBS,
       accountnumber: "322-772-441",
       amountscammed: 90000,
       assignee: "Tom",

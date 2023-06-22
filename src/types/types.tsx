@@ -15,7 +15,23 @@ export type CaseScamTypeType =
   | "E-Commerce Scam"
   | "Lottery Scam"
   | "Parcel Scam"
+  | "Tech Support Scam"
+  | "Phishing Scam"
+  | "Identity Theft"
+  | "Credit Card Scam"
   | "Others";
+
+export type BankAccountType =
+  | "DBS"
+  | "OCBC"
+  | "UOB"
+  | "Standard Chartered"
+  | "Citibank"
+  | "HSBC"
+  | "Maybank"
+  | "Bank of China"
+  | "CIMB"
+  | "Bank of America";
 
 export interface CaseDataDashboardType {
   datereferral: Date;
@@ -31,7 +47,7 @@ export interface CaseInfoDataType {
   datereferral: Date;
   phonenumber: number;
   scamtype: CaseScamTypeType;
-  accountbank: string;
+  bankaccount: BankAccountType;
   accountnumber: string;
   amountscammed: number;
   assignee: string;

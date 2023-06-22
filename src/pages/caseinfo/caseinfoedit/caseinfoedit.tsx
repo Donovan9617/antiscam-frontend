@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import {
+  BankAccountType,
   CaseInfoDataType,
   CaseScamTypeType,
   CaseStatusType,
@@ -78,27 +79,39 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
                   <option>E-Commerce Scam</option>
                   <option>Lottery Scam</option>
                   <option>Parcel Scam</option>
+                  <option>Tech Support Scam</option>
+                  <option>Phishing Scam</option>
+                  <option>Identity Theft</option>
+                  <option>Credit Card Scam</option>
                   <option>Others</option>
                 </Form.Select>
               </Form.Group>
             </Row>
             <Row className="mb-4">
               <Form.Group as={Col}>
-                <Form.Label>Account Bank</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="accountbank"
-                  value={editedCaseInformation.accountbank}
+                <Form.Label>Bank Account</Form.Label>
+                <Form.Select
+                  defaultValue={editedCaseInformation.bankaccount}
                   onChange={(e) => {
                     setEditedCaseInformation({
                       ...editedCaseInformation,
-                      accountbank: e.target.value,
+                      bankaccount: e.target.value as BankAccountType,
                     });
                   }}
-                />
+                >
+                  <option>DBS</option>
+                  <option>OCBC</option>
+                  <option>UOB</option>
+                  <option>Standard Chartered</option>
+                  <option>Citibank</option>
+                  <option>HSBC</option>
+                  <option>Maybank</option>
+                  <option>Bank</option>
+                  <option>Bank of America</option>
+                </Form.Select>
               </Form.Group>
               <Form.Group as={Col}>
-                <Form.Label>Account Number</Form.Label>
+                <Form.Label>Bank Account Number</Form.Label>
                 <Form.Control
                   type="text"
                   name="accountnumber"

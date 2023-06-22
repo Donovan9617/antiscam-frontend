@@ -26,3 +26,16 @@ export const CASE_SCAMTYPE_ENUM = {
   PARCEL_SCAM: "Parcel Scam",
   OTHERS: "Others",
 } as const;
+
+export const BANK_ACCOUNT_ENUM = {
+  DBS: "DBS",
+  OCBC: "OCBC",
+  UOB: "UOB",
+  STANDARD_CHARTERED: "Standard Chartered",
+  CITIBANK: "Citibank",
+  HSBC: "HSBC",
+  MAYBANK: "Maybank",
+  BANK_OF_CHINA: "Bank of China",
+  CIMB: "CIMB",
+  BANK_OF_AMERICA: "Bank of America",
+} as const;

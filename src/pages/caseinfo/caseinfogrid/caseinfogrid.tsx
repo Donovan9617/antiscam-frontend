@@ -40,11 +40,11 @@ export const CaseInfoGrid: React.FC<CaseInfoGridProps> = ({
       </Row>
       <Row className="mb-4">
         <Col>
-          <h6>Account Bank:</h6>
-          <p>{caseInformation && caseInformation.accountbank}</p>
+          <h6>Bank Account:</h6>
+          <p>{caseInformation && caseInformation.bankaccount}</p>
         </Col>
         <Col>
-          <h6>Account Number:</h6>
+          <h6>Bank Account Number:</h6>
           <p>{caseInformation && caseInformation.accountnumber}</p>
         </Col>
         <Col>

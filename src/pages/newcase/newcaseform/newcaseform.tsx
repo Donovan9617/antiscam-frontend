@@ -21,7 +21,7 @@ export const NewCaseForm: React.FC = () => {
     //       dateReferral: form.dateReferral.value,
     //       caseId: form.caseId.value,
     //       scamType: form.scamType.value,
-    //       accountBank: form.accountBank.value,
+    //       bankaccount: form.bankaccount.value,
     //       accountNumber: form.accountNumber.value,
     //       amountScammed: form.amountScammed.value,
     //       phoneNumber: form.phoneNumber.value,
@@ -61,17 +61,31 @@ export const NewCaseForm: React.FC = () => {
               <option>E-Commerce Scam</option>
               <option>Lottery Scam</option>
               <option>Parcel Scam</option>
+              <option>Tech Support Scam</option>
+              <option>Phishing Scam</option>
+              <option>Identity Theft</option>
+              <option>Credit Card Scam</option>
               <option>Others</option>
             </Form.Select>
           </Form.Group>
         </Row>
         <Row className="mb-3">
           <Form.Group as={Col}>
-            <Form.Label>Account Bank</Form.Label>
-            <Form.Control type="text" placeholder="Enter Account Bank..." />
+            <Form.Label>Bank Account</Form.Label>
+            <Form.Select>
+              <option>DBS</option>
+              <option>OCBC</option>
+              <option>UOB</option>
+              <option>Standard Chartered</option>
+              <option>Citibank</option>
+              <option>HSBC</option>
+              <option>Maybank</option>
+              <option>Bank</option>
+              <option>Bank of America</option>
+            </Form.Select>
           </Form.Group>
           <Form.Group as={Col}>
-            <Form.Label>Account Number</Form.Label>
+            <Form.Label>Bank Account Number</Form.Label>
             <Form.Control type="number" placeholder="Enter Amount Number..." />
           </Form.Group>
           <Form.Group as={Col}>
