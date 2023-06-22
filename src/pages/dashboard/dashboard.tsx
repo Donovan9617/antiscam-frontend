@@ -53,6 +53,38 @@ export const Dashboard: React.FC = () => {
         assignee: "Adam",
         status: CASE_STATUS_ENUM.PENDING,
       },
+      {
+        datereferral: new Date(2023, 5, 9, 7, 0),
+        caseid: "22c350a1-230f-4aac-be03-76f6e721d7fd",
+        description: "Testing",
+        scamtype: CASE_SCAMTYPE_ENUM.JOB_SCAM,
+        assignee: "Bob",
+        status: CASE_STATUS_ENUM.PENDING,
+      },
+      {
+        datereferral: new Date(2023, 5, 9, 6, 0),
+        caseid: "c147b962-073b-4a6f-a8ba-a020c2ef0ecd",
+        description: "Testing again testing again testing again",
+        scamtype: CASE_SCAMTYPE_ENUM.PARCEL_SCAM,
+        assignee: "Adam",
+        status: CASE_STATUS_ENUM.PENDING,
+      },
+      {
+        datereferral: new Date(2023, 5, 9, 5, 0),
+        caseid: "26c350a1-230f-4aac-be03-76f6e721d7fd",
+        description: "Testing",
+        scamtype: CASE_SCAMTYPE_ENUM.JOB_SCAM,
+        assignee: "Bob",
+        status: CASE_STATUS_ENUM.PENDING,
+      },
+      {
+        datereferral: new Date(2023, 5, 9, 4, 0),
+        caseid: "c247b962-073b-4a6f-a8ba-a020c2ef0ecd",
+        description: "Testing again testing again testing again",
+        scamtype: CASE_SCAMTYPE_ENUM.PARCEL_SCAM,
+        assignee: "Adam",
+        status: CASE_STATUS_ENUM.PENDING,
+      },
     ];
     data.sort((a, b) => {
       return b.datereferral.getTime() - a.datereferral.getTime();

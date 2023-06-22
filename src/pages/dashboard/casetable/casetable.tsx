@@ -42,8 +42,8 @@ export const CaseTable: React.FC<CaseTableProps> = ({
     setIsDateReferralChronological(!isDateReferralChronological);
     caseData.sort((a, b) => {
       return isDateReferralChronological
-        ? a.datereferral.getTime() - b.datereferral.getTime()
-        : b.datereferral.getTime() - a.datereferral.getTime();
+        ? b.datereferral.getTime() - a.datereferral.getTime()
+        : a.datereferral.getTime() - b.datereferral.getTime();
     });
   };
 

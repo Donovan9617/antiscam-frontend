@@ -1,3 +1,5 @@
+import * as yup from "yup";
+
 export const CASE_STATUS_ENUM = {
   NONE: "None",
   ACTIVATED: "Activated",
@@ -39,3 +41,21 @@ export const BANK_ACCOUNT_ENUM = {
   CIMB: "CIMB",
   BANK_OF_AMERICA: "Bank of America",
 } as const;
+
+export const CASE_FORM_SCHEMA = yup.object().shape({
+  datereferral: yup.date().required("Date referral is required"),
+  scamtype: yup.string().required("Scam type is required"),
+  bankaccount: yup.string().required("Bank account is required"),
+  bankaccountnumber: yup.string().required("Bank account number is required"),
+  amountscammed: yup.number().required("Amount scammed is required"),
+  phonenumber: yup
+    .string()
+    .required("Phone number is required")
+    .matches(
+      /^[89]\d{7}$/,
+      "Phone number must be 8 digits starting with 8 or 9"
+    ),
+  assignee: yup.string().required("Assignee is required"),
+  status: yup.string().required("Case status is required"),
+  description: yup.string().required("Case description is required"),
+});
