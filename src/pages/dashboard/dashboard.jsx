@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { CaseStatistics } from "./casestatistics/casestatistics";
 import { CaseTable } from "./casetable/casetable";
+import { NetworkGraph } from "../charts/networkgraph";
 
 export const Dashboard = () => {
   const [caseData, setCaseData] = useState([]);
