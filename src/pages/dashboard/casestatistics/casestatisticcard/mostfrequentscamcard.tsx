@@ -1,8 +1,8 @@
 import { Card } from "react-bootstrap";
-import { CaseDataType1 } from "../../types/types";
+import { CaseDataDashboardType } from "../../../../types/types";
 
 interface MostPopularScamCardProps {
-  caseData: CaseDataType1[];
+  caseData: CaseDataDashboardType[];
 }
 
 export const MostFrequentScamCard: React.FC<MostPopularScamCardProps> = ({

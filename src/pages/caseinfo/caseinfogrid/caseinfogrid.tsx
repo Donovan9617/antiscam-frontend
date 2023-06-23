@@ -9,9 +9,9 @@ export const CaseInfoGrid: React.FC<CaseInfoGridProps> = ({
   caseInformation,
 }: CaseInfoGridProps) => {
   return (
-    <Container style={{ marginTop: "30px" }}>
-      <Row className="mb-4">
-        <Col>
+    <Container className="mt-5">
+      <Row>
+        <Col className="mb-4" md="4">
           <h6>Date Referral:</h6>
           <p>
             {" "}
@@ -29,30 +29,40 @@ export const CaseInfoGrid: React.FC<CaseInfoGridProps> = ({
               })}
           </p>
         </Col>
-        <Col>
+        <Col className="mb-4" md="4">
           <h6>Phone Number:</h6>
           <p>{caseInformation && caseInformation.phonenumber}</p>
         </Col>
-        <Col>
+        <Col className="mb-4" md="4">
           <h6>Scam Type:</h6>
           <p>{caseInformation && caseInformation.scamtype}</p>
         </Col>
       </Row>
-      <Row className="mb-4">
-        <Col>
-          <h6>Account Bank:</h6>
-          <p>{caseInformation && caseInformation.accountbank}</p>
+      <Row>
+        <Col className="mb-4" md="4">
+          <h6>Bank Account:</h6>
+          <p>{caseInformation && caseInformation.bankaccount}</p>
         </Col>
-        <Col>
-          <h6>Account Number:</h6>
+        <Col className="mb-4" md="4">
+          <h6>Bank Account Number:</h6>
           <p>{caseInformation && caseInformation.accountnumber}</p>
         </Col>
-        <Col>
+        <Col className="mb-4" md="4">
           <h6>Amount Scammed (S$):</h6>
           <p>{caseInformation && caseInformation.amountscammed}</p>
         </Col>
       </Row>
-      <Row className="mb-4">
+      <Row>
+        <Col className="mb-4" md="6">
+          <h6>Assignee:</h6>
+          <p>{caseInformation && caseInformation.assignee}</p>
+        </Col>
+        <Col className="mb-4" md="6">
+          <h6>Status:</h6>
+          <p>{caseInformation && caseInformation.status}</p>
+        </Col>
+      </Row>
+      <Row>
         <h6>Case Description:</h6>
         <p>{caseInformation && caseInformation.description}</p>
       </Row>

@@ -1,39 +1,37 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-export const CaseRejectedButton: React.FC = () => {
+export const CaseActivationButton: React.FC = () => {
   const [showConfirmation, setShowConfirmation] = useState<boolean | undefined>(
     false
   );
-  const handleReject: () => void = () => {
+
+  const handleActivate: () => void = () => {
     setShowConfirmation(true);
   };
-  const handleConfirmReject: () => void = () => {
-    // Perform the reject action here
-    // ...
+
+  const handleConfirmActivate: () => void = () => {
+    // Send API to the backend to update the status of the case to Activated
     setShowConfirmation(false);
   };
+
   const handleCloseConfirmation: () => void = () => {
     setShowConfirmation(false);
   };
 
   return (
     <>
-      <Button onClick={handleReject} variant="danger">
-        Reject
-      </Button>
+      <Button onClick={handleActivate}>Activate</Button>
       <Modal show={showConfirmation} onHide={handleCloseConfirmation}>
         <Modal.Header closeButton>
-          <Modal.Title>Confirm Reject</Modal.Title>
+          <Modal.Title>Confirm Activate</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to reject this case?</Modal.Body>
+        <Modal.Body>Are you sure you want to activate this case?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseConfirmation}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleConfirmReject}>
-            Confirm
-          </Button>
+          <Button onClick={handleConfirmActivate}>Confirm</Button>
         </Modal.Footer>
       </Modal>
     </>

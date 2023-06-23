@@ -1,6 +1,6 @@
 export type NavItemType = "dashboard" | "second";
 
-export type CaseStatusType = "None" | "Activated" | "Pending" | "Rejected";
+export type CaseStatusType = "" | "None" | "Activated" | "Pending" | "Rejected";
 
 export type FilteredCaseStatusType =
   | "none"
@@ -8,22 +8,69 @@ export type FilteredCaseStatusType =
   | "pending"
   | "rejected";
 
-export interface CaseDataType1 {
+export type CaseScamTypeType =
+  | ""
+  | "Job Scam"
+  | "Investment Scam"
+  | "Love Scam"
+  | "E-Commerce Scam"
+  | "Lottery Scam"
+  | "Parcel Scam"
+  | "Tech Support Scam"
+  | "Phishing Scam"
+  | "Identity Theft"
+  | "Credit Card Scam"
+  | "Others";
+
+export type BankAccountType =
+  | ""
+  | "DBS"
+  | "OCBC"
+  | "UOB"
+  | "Standard Chartered"
+  | "Citibank"
+  | "HSBC"
+  | "Maybank"
+  | "Bank of China"
+  | "CIMB"
+  | "Bank of America";
+
+export interface CaseDataDashboardType {
   datereferral: Date;
-  caseid: number;
+  caseid: string;
   description: string;
-  scamtype: string;
+  scamtype: CaseScamTypeType;
   assignee: string;
   status: CaseStatusType;
 }
 
+export interface NewCaseFormValuesType extends CaseInfoDataType {}
+
 export interface CaseInfoDataType {
-  caseid: number;
+  caseid: string;
   datereferral: Date;
   phonenumber: number;
-  scamtype: string;
-  accountbank: string;
+  scamtype: CaseScamTypeType;
+  bankaccount: BankAccountType;
   accountnumber: string;
   amountscammed: number;
+  assignee: string;
+  status: CaseStatusType;
   description: string;
+}
+
+export interface CaseInfoEditFormValuesProps {
+  datereferral: string;
+  scamtype: string;
+  bankaccount: string;
+  bankaccountnumber: string;
+  amountscammed: number;
+  phonenumber: number;
+  assignee: string;
+  status: string;
+  description: string;
+}
+
+export interface NewCaseFormValuesProps extends CaseInfoEditFormValuesProps {
+  caseid: string;
 }

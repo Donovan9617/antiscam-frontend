@@ -1,9 +1,9 @@
 import { Card } from "react-bootstrap";
-import { CASE_STATUS_ENUM } from "../../config";
-import { CaseDataType1 } from "../../types/types";
+import { CASE_STATUS_ENUM } from "../../../../types/enums";
+import { CaseDataDashboardType } from "../../../../types/types";
 
 interface StatusScamCard {
-  caseData: CaseDataType1[];
+  caseData: CaseDataDashboardType[];
 }
 
 export const StatusScamsCard: React.FC<StatusScamCard> = ({

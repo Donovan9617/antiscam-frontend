@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
-import { NAV_ITEMS_ENUM, ROUTES } from "../../config";
+import { ROUTES } from "../../config";
+import { NAV_ITEMS_ENUM } from "../../types/enums";
 import { NavItemType } from "../../types/types";
 
 export const NavigationBar: React.FC = () => {
