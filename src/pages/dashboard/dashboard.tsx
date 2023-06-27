@@ -15,6 +15,8 @@ import { CaseTools } from "./casetools/casetools";
 
 export const Dashboard: React.FC = () => {
   const [caseData, setCaseData] = useState<CaseDataDashboardType[]>([]);
+  const [searchedCaseDescription, setSearchedCaseDescription] =
+    useState<string>("");
   const [filteredCaseStatus, setFilteredCaseStatus] =
     useState<FilteredCaseStatusType>(FILTERED_CASE_STATUS_ENUM.NONE);
 
@@ -104,12 +106,14 @@ export const Dashboard: React.FC = () => {
         <CaseTools
           filteredCaseStatus={filteredCaseStatus}
           setFilteredCaseStatus={setFilteredCaseStatus}
+          setSearchedCaseDescription={setSearchedCaseDescription}
         />
       </Container>
       <Container style={{ marginTop: 15 }}>
         <CaseTable
           caseData={caseData}
           filteredCaseStatus={filteredCaseStatus}
+          searchedCaseDescription={searchedCaseDescription}
         />
       </Container>
     </Container>
