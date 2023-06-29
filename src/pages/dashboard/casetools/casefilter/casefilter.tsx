@@ -12,6 +12,10 @@ interface FilterCaseProps {
   setFilteredCaseStatus: (status: FilteredCaseStatusType) => void;
 }
 
+const filterCaseStyle: React.CSSProperties = {
+  marginRight: 10,
+};
+
 export const FilterCase: React.FC<FilterCaseProps> = ({
   filteredCaseStatus,
   setFilteredCaseStatus,
@@ -69,8 +73,8 @@ export const FilterCase: React.FC<FilterCaseProps> = ({
         </Popover>
       }
     >
-      <Button>
-        <Image src={funnel} alt="funnel"></Image> Filter Case
+      <Button style={filterCaseStyle}>
+        <Image src={funnel} alt="funnel" /> Filter Case
       </Button>
     </OverlayTrigger>
   );

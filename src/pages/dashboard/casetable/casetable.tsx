@@ -17,11 +17,13 @@ import { CaseRejectedButton } from "./casebutton/caserejectedbutton";
 interface CaseTableProps {
   caseData: CaseDataDashboardType[];
   filteredCaseStatus: FilteredCaseStatusType;
+  searchedCaseDescription: string;
 }
 
 export const CaseTable: React.FC<CaseTableProps> = ({
   caseData,
   filteredCaseStatus,
+  searchedCaseDescription,
 }: CaseTableProps) => {
   const [caseDataToShow, setCaseDataToShow] = useState<
     CaseDataDashboardType[] | undefined
@@ -40,11 +42,12 @@ export const CaseTable: React.FC<CaseTableProps> = ({
 
   const handleSortDateReferral: () => void = () => {
     setIsDateReferralChronological(!isDateReferralChronological);
-    caseData.sort((a, b) => {
+    caseDataToShow?.sort((a, b) => {
       return isDateReferralChronological
         ? b.datereferral.getTime() - a.datereferral.getTime()
         : a.datereferral.getTime() - b.datereferral.getTime();
     });
+    setCaseDataToShow(caseDataToShow);
   };
 
   const handleViewCaseInfo: (caseid: string) => void = (caseid) => {
@@ -52,32 +55,36 @@ export const CaseTable: React.FC<CaseTableProps> = ({
   };
 
   useEffect(() => {
+    let filteredCaseData: CaseDataDashboardType[] = [];
     switch (filteredCaseStatus) {
       case FILTERED_CASE_STATUS_ENUM.ACTIVATED:
-        const activatedCasesData = caseData.filter(
+        filteredCaseData = caseData.filter(
           (caseItem) => caseItem.status === CASE_STATUS_ENUM.ACTIVATED
         );
-        setCaseDataToShow(activatedCasesData);
         break;
       case FILTERED_CASE_STATUS_ENUM.PENDING:
-        const pendingCasesData = caseData.filter(
+        filteredCaseData = caseData.filter(
           (caseItem) => caseItem.status === CASE_STATUS_ENUM.PENDING
         );
-        setCaseDataToShow(pendingCasesData);
         break;
       case FILTERED_CASE_STATUS_ENUM.REJECTED:
-        const rejectedCasesData = caseData.filter(
+        filteredCaseData = caseData.filter(
           (caseItem) => caseItem.status === CASE_STATUS_ENUM.REJECTED
         );
-        setCaseDataToShow(rejectedCasesData);
         break;
       case FILTERED_CASE_STATUS_ENUM.NONE:
-        setCaseDataToShow(caseData);
+        filteredCaseData = caseData;
         break;
       default:
         break;
     }
-  }, [caseData, filteredCaseStatus, caseDataToShow]);
+    const searchedCaseData: CaseDataDashboardType[] = filteredCaseData.filter(
+      (caseItem) => {
+        return caseItem.description.includes(searchedCaseDescription);
+      }
+    );
+    setCaseDataToShow(searchedCaseData);
+  }, [caseData, filteredCaseStatus, searchedCaseDescription]);
 
   return (
     <div style={caseTableStyle}>
