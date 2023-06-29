@@ -60,6 +60,9 @@ export const FilterCase: React.FC<FilterCaseProps> = ({
         <Popover>
           <Popover.Body>
             <Form>
+              <h6>
+                <u>Status</u>
+              </h6>
               <Form.Check
                 type="radio"
                 value={FILTERED_CASE_STATUS_ENUM.NONE}
@@ -94,7 +97,10 @@ export const FilterCase: React.FC<FilterCaseProps> = ({
                 }
                 onChange={handleFilteredCaseStatus}
               />
-              <hr />
+              <br />
+              <h6>
+                <u>Date</u>
+              </h6>
               <Form.Group>
                 <Form.Label>Start Date:</Form.Label>
                 <Form.Control
