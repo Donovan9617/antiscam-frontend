@@ -145,27 +145,29 @@ export const CaseTable: React.FC<CaseTableProps> = ({
                   <td
                     style={{
                       ...caseTableDataStyle,
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    {caseDataItem.datereferral.toLocaleString("en-US", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                    ,{" "}
+                    {caseDataItem.datereferral.toLocaleTimeString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                    })}
+                  </td>
+                  <td
+                    style={{
+                      ...caseTableDataStyle,
                       cursor: "pointer",
                       whiteSpace: "nowrap",
                     }}
                     onClick={() => handleViewCaseInfo(caseDataItem.caseid)}
                   >
-                    <u>
-                      {" "}
-                      {caseDataItem.datereferral.toLocaleString("en-US", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                      ,{" "}
-                      {caseDataItem.datereferral.toLocaleTimeString("en-US", {
-                        hour: "numeric",
-                        minute: "numeric",
-                      })}
-                    </u>
-                  </td>
-                  <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
-                    {caseDataItem.caseid}
+                    <u>{caseDataItem.caseid}</u>
                   </td>
                   <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
                     {caseDataItem.description}
