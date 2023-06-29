@@ -271,7 +271,7 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
                     textAlign: "center",
                   }}
                 >
-                  <Button type="submit">+ Create Case</Button>
+                  <Button type="submit">Save</Button>
                 </Container>
               </Form>
             )}

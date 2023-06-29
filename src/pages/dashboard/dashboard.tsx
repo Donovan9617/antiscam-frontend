@@ -7,6 +7,7 @@ import {
 } from "../../types/enums";
 import {
   CaseDataDashboardType,
+  FilteredCaseDate,
   FilteredCaseStatusType,
 } from "../../types/types";
 import { CaseStatistics } from "./casestatistics/casestatistics";
@@ -19,6 +20,10 @@ export const Dashboard: React.FC = () => {
     useState<string>("");
   const [filteredCaseStatus, setFilteredCaseStatus] =
     useState<FilteredCaseStatusType>(FILTERED_CASE_STATUS_ENUM.NONE);
+  const [filteredCaseDate, setFilteredCaseDate] = useState<FilteredCaseDate>({
+    startDate: "",
+    endDate: "",
+  });
 
   useEffect(() => {
     // API call to obtain the backend data in JSON
@@ -107,6 +112,7 @@ export const Dashboard: React.FC = () => {
           filteredCaseStatus={filteredCaseStatus}
           setFilteredCaseStatus={setFilteredCaseStatus}
           setSearchedCaseDescription={setSearchedCaseDescription}
+          setFilteredCaseDate={setFilteredCaseDate}
         />
       </Container>
       <Container style={{ marginTop: 15 }}>
@@ -114,6 +120,7 @@ export const Dashboard: React.FC = () => {
           caseData={caseData}
           filteredCaseStatus={filteredCaseStatus}
           searchedCaseDescription={searchedCaseDescription}
+          filteredCaseDate={filteredCaseDate}
         />
       </Container>
     </Container>
