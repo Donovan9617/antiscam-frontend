@@ -8,6 +8,11 @@ export type FilteredCaseStatusType =
   | "pending"
   | "rejected";
 
+export interface FilteredCaseDate {
+  startDate: string;
+  endDate: string;
+}
+
 export type CaseScamTypeType =
   | ""
   | "Job Scam"

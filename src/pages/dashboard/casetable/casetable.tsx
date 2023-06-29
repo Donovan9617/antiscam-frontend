@@ -9,6 +9,7 @@ import {
 } from "../../../types/enums";
 import {
   CaseDataDashboardType,
+  FilteredCaseDate,
   FilteredCaseStatusType,
 } from "../../../types/types";
 import { CaseActivationButton } from "./casebutton/caseactivationbutton";
@@ -18,12 +19,14 @@ interface CaseTableProps {
   caseData: CaseDataDashboardType[];
   filteredCaseStatus: FilteredCaseStatusType;
   searchedCaseDescription: string;
+  filteredCaseDate: FilteredCaseDate;
 }
 
 export const CaseTable: React.FC<CaseTableProps> = ({
   caseData,
   filteredCaseStatus,
   searchedCaseDescription,
+  filteredCaseDate,
 }: CaseTableProps) => {
   const [caseDataToShow, setCaseDataToShow] = useState<
     CaseDataDashboardType[] | undefined
@@ -55,36 +58,62 @@ export const CaseTable: React.FC<CaseTableProps> = ({
   };
 
   useEffect(() => {
-    let filteredCaseData: CaseDataDashboardType[] = [];
+    let filteredCaseStatusData: CaseDataDashboardType[] = [];
     switch (filteredCaseStatus) {
       case FILTERED_CASE_STATUS_ENUM.ACTIVATED:
-        filteredCaseData = caseData.filter(
+        filteredCaseStatusData = caseData.filter(
           (caseItem) => caseItem.status === CASE_STATUS_ENUM.ACTIVATED
         );
         break;
       case FILTERED_CASE_STATUS_ENUM.PENDING:
-        filteredCaseData = caseData.filter(
+        filteredCaseStatusData = caseData.filter(
           (caseItem) => caseItem.status === CASE_STATUS_ENUM.PENDING
         );
         break;
       case FILTERED_CASE_STATUS_ENUM.REJECTED:
-        filteredCaseData = caseData.filter(
+        filteredCaseStatusData = caseData.filter(
           (caseItem) => caseItem.status === CASE_STATUS_ENUM.REJECTED
         );
         break;
       case FILTERED_CASE_STATUS_ENUM.NONE:
-        filteredCaseData = caseData;
+        filteredCaseStatusData = caseData;
         break;
       default:
         break;
     }
-    const searchedCaseData: CaseDataDashboardType[] = filteredCaseData.filter(
-      (caseItem) => {
+
+    const searchedCaseDescriptionData: CaseDataDashboardType[] =
+      filteredCaseStatusData.filter((caseItem) => {
         return caseItem.description.includes(searchedCaseDescription);
-      }
-    );
-    setCaseDataToShow(searchedCaseData);
-  }, [caseData, filteredCaseStatus, searchedCaseDescription]);
+      });
+
+    let filteredCaseDateData: CaseDataDashboardType[] =
+      searchedCaseDescriptionData;
+
+    if (filteredCaseDate.startDate && filteredCaseDate.endDate) {
+      const startDateTime = new Date(filteredCaseDate.startDate).setHours(
+        0,
+        0,
+        0,
+        0
+      );
+      const endDateTime = new Date(filteredCaseDate.endDate).setHours(
+        23,
+        59,
+        59,
+        999
+      );
+
+      filteredCaseDateData = searchedCaseDescriptionData.filter((caseItem) => {
+        const caseItemDateTime = caseItem.datereferral.getTime();
+        return (
+          caseItemDateTime >= startDateTime && caseItemDateTime <= endDateTime
+        );
+      });
+    }
+
+    setCaseDataToShow(filteredCaseDateData);
+  }, [caseData, filteredCaseStatus, searchedCaseDescription, filteredCaseDate]);
 
   return (
     <div style={caseTableStyle}>
@@ -125,7 +154,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({
                       {" "}
                       {caseDataItem.datereferral.toLocaleString("en-US", {
                         day: "2-digit",
-                        month: "2-digit",
+                        month: "short",
                         year: "numeric",
                       })}
                       ,{" "}
