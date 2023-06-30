@@ -21,7 +21,9 @@ export const CaseActivationButton: React.FC = () => {
 
   return (
     <>
-      <Button onClick={handleActivate}>Activate</Button>
+      <Button onClick={handleActivate} size="sm">
+        Activate
+      </Button>
       <Modal show={showConfirmation} onHide={handleCloseConfirmation}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Activate</Modal.Title>

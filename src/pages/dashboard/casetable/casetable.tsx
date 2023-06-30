@@ -14,6 +14,7 @@ import {
 } from "../../../types/types";
 import { CaseActivationButton } from "./casebutton/caseactivationbutton";
 import { CaseRejectedButton } from "./casebutton/caserejectedbutton";
+import { CasePagination } from "./casepagination/casepagination";
 
 interface CaseTableProps {
   caseData: CaseDataDashboardType[];
@@ -34,13 +35,25 @@ export const CaseTable: React.FC<CaseTableProps> = ({
   const [isDateReferralChronological, setIsDateReferralChronological] =
     useState<boolean>(false);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const ITEMS_PER_PAGE = 10;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
 
   const caseTableStyle: React.CSSProperties = { textAlign: "center" };
+  const caseTableHeaderRowStyle: React.CSSProperties = {
+    backgroundColor: "#d0d0d0",
+  };
   const caseTableDataStyle: React.CSSProperties = {
     maxWidth: "150px",
     overflow: "hidden",
     textOverflow: "ellipsis",
     whiteSpace: "nowrap",
+  };
+  const caseTableActionDataStyle: React.CSSProperties = {
+    display: "flex",
+    justifyContent: "center",
+    gap: "5px",
   };
 
   const handleSortDateReferral: () => void = () => {
@@ -55,6 +68,21 @@ export const CaseTable: React.FC<CaseTableProps> = ({
 
   const handleViewCaseInfo: (caseid: string) => void = (caseid) => {
     return navigate(`/case/${caseid}`);
+  };
+
+  const formatDateReferral: (datereferral: Date) => string = (datereferral) => {
+    return (
+      datereferral.toLocaleString("en-US", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }) +
+      ", " +
+      datereferral.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "numeric",
+      })
+    );
   };
 
   useEffect(() => {
@@ -119,7 +147,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({
     <div style={caseTableStyle}>
       <Table bordered responsive>
         <thead>
-          <tr style={{ backgroundColor: "#d0d0d0" }}>
+          <tr style={caseTableHeaderRowStyle}>
             <th style={{ width: "15%" }}>
               <div
                 style={{ cursor: "pointer" }}
@@ -140,56 +168,35 @@ export const CaseTable: React.FC<CaseTableProps> = ({
         <tbody>
           {caseDataToShow &&
             (caseDataToShow.length > 0 ? (
-              caseDataToShow.map((caseDataItem) => (
+              caseDataToShow.slice(startIndex, endIndex).map((caseDataItem) => (
                 <tr key={caseDataItem.caseid}>
-                  <td
-                    style={{
-                      ...caseTableDataStyle,
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {caseDataItem.datereferral.toLocaleString("en-US", {
-                      day: "2-digit",
-                      month: "short",
-                      year: "numeric",
-                    })}
-                    ,{" "}
-                    {caseDataItem.datereferral.toLocaleTimeString("en-US", {
-                      hour: "numeric",
-                      minute: "numeric",
-                    })}
+                  <td style={{ ...caseTableDataStyle }}>
+                    {formatDateReferral(caseDataItem.datereferral)}
                   </td>
                   <td
                     style={{
                       ...caseTableDataStyle,
                       cursor: "pointer",
-                      whiteSpace: "nowrap",
                     }}
                     onClick={() => handleViewCaseInfo(caseDataItem.caseid)}
                   >
                     <u>{caseDataItem.caseid}</u>
                   </td>
-                  <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
+                  <td style={{ ...caseTableDataStyle }}>
                     {caseDataItem.description}
                   </td>
-                  <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
+                  <td style={{ ...caseTableDataStyle }}>
                     {caseDataItem.scamtype}
                   </td>
-                  <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
+                  <td style={{ ...caseTableDataStyle }}>
                     {caseDataItem.assignee}
                   </td>
-                  <td style={{ ...caseTableDataStyle, whiteSpace: "nowrap" }}>
+                  <td style={{ ...caseTableDataStyle }}>
                     {caseDataItem.status}
                   </td>
                   <td style={{ width: "1%" }}>
                     {caseDataItem.status === CASE_STATUS_ENUM.PENDING ? (
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          gap: "5px",
-                        }}
-                      >
+                      <div style={caseTableActionDataStyle}>
                         <CaseActivationButton />
                         <CaseRejectedButton />
                       </div>
@@ -203,7 +210,6 @@ export const CaseTable: React.FC<CaseTableProps> = ({
               <tr
                 style={{
                   ...caseTableDataStyle,
-                  whiteSpace: "nowrap",
                   textAlign: "center",
                 }}
               >
@@ -212,6 +218,12 @@ export const CaseTable: React.FC<CaseTableProps> = ({
             ))}
         </tbody>
       </Table>
+      <CasePagination
+        caseDataToShow={caseDataToShow}
+        ITEMS_PER_PAGE={ITEMS_PER_PAGE}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
   );
 };

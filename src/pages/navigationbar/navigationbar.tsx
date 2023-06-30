@@ -28,7 +28,7 @@ export const NavigationBar: React.FC = () => {
       />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav variant="pills" className="flex-column">
-          <Nav.Item style={{ marginTop: "20px" }}>
+          <Nav.Item className="mt-4">
             {/* For not it is / but when login implemented should be /dashboard */}
             <Nav.Link
               href={ROUTES.DASHBOARD}

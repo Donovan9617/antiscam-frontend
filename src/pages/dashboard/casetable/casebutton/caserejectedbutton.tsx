@@ -18,7 +18,7 @@ export const CaseRejectedButton: React.FC = () => {
 
   return (
     <>
-      <Button onClick={handleReject} variant="danger">
+      <Button onClick={handleReject} variant="danger" size="sm">
         Reject
       </Button>
       <Modal show={showConfirmation} onHide={handleCloseConfirmation}>
