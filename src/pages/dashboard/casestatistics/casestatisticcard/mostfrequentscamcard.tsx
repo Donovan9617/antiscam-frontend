@@ -31,7 +31,8 @@ export const MostFrequentScamCard: React.FC<MostPopularScamCardProps> = ({
   return (
     <Card
       border="primary"
-      style={{ width: "18rem", marginRight: 20, marginTop: 20 }}
+      className="mt-4"
+      style={{ width: "18rem", marginRight: 20 }}
     >
       <Card.Body>
         <Card.Title>Most Popular Scam</Card.Title>

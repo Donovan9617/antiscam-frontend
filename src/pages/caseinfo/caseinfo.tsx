@@ -50,7 +50,8 @@ export const CaseInfo: React.FC = () => {
   return (
     <>
       <Container
-        style={{ marginTop: 20, display: "flex", alignItems: "center" }}
+        className="mt-4"
+        style={{ display: "flex", alignItems: "center" }}
       >
         <Button onClick={handleBack} style={{ backgroundColor: "transparent" }}>
           <Image
@@ -78,7 +79,7 @@ export const CaseInfo: React.FC = () => {
           </Button>
         )}
       </Container>
-      <Container style={{ marginTop: "30px" }} className="text-center">
+      <Container className="mt-5 text-center">
         {editMode ? (
           <CaseInfoEdit
             caseInformation={caseInformation}

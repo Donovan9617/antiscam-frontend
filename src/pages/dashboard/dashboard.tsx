@@ -92,6 +92,22 @@ export const Dashboard: React.FC = () => {
         assignee: "Adam",
         status: CASE_STATUS_ENUM.PENDING,
       },
+      {
+        datereferral: new Date(2023, 3, 13, 14, 0),
+        caseid: "26c350a1-230f-4aac-be03-76f6e721d7fd",
+        description: "Testing",
+        scamtype: CASE_SCAMTYPE_ENUM.JOB_SCAM,
+        assignee: "Bob",
+        status: CASE_STATUS_ENUM.PENDING,
+      },
+      {
+        datereferral: new Date(2023, 2, 17, 7, 0),
+        caseid: "c247b962-073b-4a6f-a8ba-a020c2ef0ecd",
+        description: "Testing again testing again testing again",
+        scamtype: CASE_SCAMTYPE_ENUM.PARCEL_SCAM,
+        assignee: "Adam",
+        status: CASE_STATUS_ENUM.PENDING,
+      },
     ];
     data.sort((a, b) => {
       return b.datereferral.getTime() - a.datereferral.getTime();
@@ -100,14 +116,14 @@ export const Dashboard: React.FC = () => {
   }, []);
 
   return (
-    <Container style={{ marginTop: 20 }}>
+    <Container className="mt-4">
       <Container>
         <h2 style={{ textAlign: "center" }}>Case Management Dashboard</h2>
       </Container>
-      <Container style={{ marginTop: 10 }}>
+      <Container className="mt-2">
         <CaseStatistics caseData={caseData} />
       </Container>
-      <Container style={{ marginTop: 15 }}>
+      <Container className="mt-3">
         <CaseTools
           filteredCaseStatus={filteredCaseStatus}
           setFilteredCaseStatus={setFilteredCaseStatus}
@@ -115,7 +131,7 @@ export const Dashboard: React.FC = () => {
           setFilteredCaseDate={setFilteredCaseDate}
         />
       </Container>
-      <Container style={{ marginTop: 15 }}>
+      <Container className="mt-3">
         <CaseTable
           caseData={caseData}
           filteredCaseStatus={filteredCaseStatus}

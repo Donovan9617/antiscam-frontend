@@ -14,7 +14,8 @@ export const NewCase: React.FC = () => {
   return (
     <>
       <Container
-        style={{ marginTop: 20, display: "flex", alignItems: "center" }}
+        className="mt-4"
+        style={{ display: "flex", alignItems: "center" }}
       >
         <Button
           onClick={handleBackToDashboard}
@@ -28,7 +29,7 @@ export const NewCase: React.FC = () => {
         </Button>
         <h2 style={{ textAlign: "center", flex: 1 }}>Create New Case</h2>
       </Container>
-      <Container style={{ marginTop: "30px" }}>
+      <Container>
         <NewCaseForm />
       </Container>
     </>
