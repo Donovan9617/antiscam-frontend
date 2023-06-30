@@ -8,7 +8,11 @@ export type FilteredCaseStatusType =
   | "pending"
   | "rejected";
 
-export interface FilteredCaseDate {
+export type CaseDateType = "New to Old" | "Old to New";
+
+export type SortCaseDateType = "newtoold" | "oldtonew";
+
+export interface FilteredCaseDateType {
   startDate: string;
   endDate: string;
 }

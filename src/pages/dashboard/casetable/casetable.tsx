@@ -6,11 +6,13 @@ import sort from "../../../assets/svgs/sort.svg";
 import {
   CASE_STATUS_ENUM,
   FILTERED_CASE_STATUS_ENUM,
+  SORT_CASE_DATE_ENUM,
 } from "../../../types/enums";
 import {
   CaseDataDashboardType,
-  FilteredCaseDate,
+  FilteredCaseDateType,
   FilteredCaseStatusType,
+  SortCaseDateType,
 } from "../../../types/types";
 import { CaseActivationButton } from "./casebutton/caseactivationbutton";
 import { CaseRejectedButton } from "./casebutton/caserejectedbutton";
@@ -20,7 +22,8 @@ interface CaseTableProps {
   caseData: CaseDataDashboardType[];
   filteredCaseStatus: FilteredCaseStatusType;
   searchedCaseDescription: string;
-  filteredCaseDate: FilteredCaseDate;
+  filteredCaseDate: FilteredCaseDateType;
+  sortedCaseDate: SortCaseDateType;
 }
 
 export const CaseTable: React.FC<CaseTableProps> = ({
@@ -28,6 +31,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({
   filteredCaseStatus,
   searchedCaseDescription,
   filteredCaseDate,
+  sortedCaseDate,
 }: CaseTableProps) => {
   const [caseDataToShow, setCaseDataToShow] = useState<
     CaseDataDashboardType[] | undefined
@@ -56,16 +60,6 @@ export const CaseTable: React.FC<CaseTableProps> = ({
     gap: "5px",
   };
 
-  const handleSortDateReferral: () => void = () => {
-    setIsDateReferralChronological(!isDateReferralChronological);
-    caseDataToShow?.sort((a, b) => {
-      return isDateReferralChronological
-        ? b.datereferral.getTime() - a.datereferral.getTime()
-        : a.datereferral.getTime() - b.datereferral.getTime();
-    });
-    setCaseDataToShow(caseDataToShow);
-  };
-
   const handleViewCaseInfo: (caseid: string) => void = (caseid) => {
     return navigate(`/case/${caseid}`);
   };
@@ -86,6 +80,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({
   };
 
   useEffect(() => {
+    // Filter
     let filteredCaseStatusData: CaseDataDashboardType[] = [];
     switch (filteredCaseStatus) {
       case FILTERED_CASE_STATUS_ENUM.ACTIVATED:
@@ -109,15 +104,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({
       default:
         break;
     }
-
-    const searchedCaseDescriptionData: CaseDataDashboardType[] =
-      filteredCaseStatusData.filter((caseItem) => {
-        return caseItem.description.includes(searchedCaseDescription);
-      });
-
-    let filteredCaseDateData: CaseDataDashboardType[] =
-      searchedCaseDescriptionData;
-
+    let filteredCaseDateData: CaseDataDashboardType[] = filteredCaseStatusData;
     if (filteredCaseDate.startDate && filteredCaseDate.endDate) {
       const startDateTime = new Date(filteredCaseDate.startDate).setHours(
         0,
@@ -132,16 +119,44 @@ export const CaseTable: React.FC<CaseTableProps> = ({
         999
       );
 
-      filteredCaseDateData = searchedCaseDescriptionData.filter((caseItem) => {
+      filteredCaseDateData = filteredCaseDateData.filter((caseItem) => {
         const caseItemDateTime = caseItem.datereferral.getTime();
         return (
           caseItemDateTime >= startDateTime && caseItemDateTime <= endDateTime
         );
       });
     }
+    // Search
+    const searchedCaseDescriptionData: CaseDataDashboardType[] =
+      filteredCaseDateData.filter((caseItem) => {
+        return caseItem.description.includes(searchedCaseDescription);
+      });
+    // Sort
+    const sortedCaseDateData: CaseDataDashboardType[] =
+      searchedCaseDescriptionData;
+    switch (sortedCaseDate) {
+      case SORT_CASE_DATE_ENUM.NEW_TO_OLD:
+        sortedCaseDateData.sort((a, b) => {
+          return b.datereferral.getTime() - a.datereferral.getTime();
+        });
+        break;
+      case SORT_CASE_DATE_ENUM.OLD_TO_NEW:
+        sortedCaseDateData.sort((a, b) => {
+          return a.datereferral.getTime() - b.datereferral.getTime();
+        });
+        break;
+      default:
+        break;
+    }
 
-    setCaseDataToShow(filteredCaseDateData);
-  }, [caseData, filteredCaseStatus, searchedCaseDescription, filteredCaseDate]);
+    setCaseDataToShow(sortedCaseDateData);
+  }, [
+    caseData,
+    filteredCaseStatus,
+    searchedCaseDescription,
+    filteredCaseDate,
+    sortedCaseDate,
+  ]);
 
   return (
     <div style={caseTableStyle}>
@@ -149,10 +164,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({
         <thead>
           <tr style={caseTableHeaderRowStyle}>
             <th style={{ width: "15%" }}>
-              <div
-                style={{ cursor: "pointer" }}
-                onClick={handleSortDateReferral}
-              >
+              <div style={{ cursor: "pointer" }}>
                 Date Referral{" "}
                 <Image src={sort} alt="sort" style={{ width: "10px" }} />
               </div>
