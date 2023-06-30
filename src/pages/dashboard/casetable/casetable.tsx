@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Image, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-import sort from "../../../assets/svgs/sort.svg";
 import {
   CASE_STATUS_ENUM,
   FILTERED_CASE_STATUS_ENUM,
@@ -36,8 +35,6 @@ export const CaseTable: React.FC<CaseTableProps> = ({
   const [caseDataToShow, setCaseDataToShow] = useState<
     CaseDataDashboardType[] | undefined
   >([]);
-  const [isDateReferralChronological, setIsDateReferralChronological] =
-    useState<boolean>(false);
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const ITEMS_PER_PAGE = 10;
@@ -118,7 +115,6 @@ export const CaseTable: React.FC<CaseTableProps> = ({
         59,
         999
       );
-
       filteredCaseDateData = filteredCaseDateData.filter((caseItem) => {
         const caseItemDateTime = caseItem.datereferral.getTime();
         return (
@@ -126,11 +122,13 @@ export const CaseTable: React.FC<CaseTableProps> = ({
         );
       });
     }
+
     // Search
     const searchedCaseDescriptionData: CaseDataDashboardType[] =
       filteredCaseDateData.filter((caseItem) => {
         return caseItem.description.includes(searchedCaseDescription);
       });
+
     // Sort
     const sortedCaseDateData: CaseDataDashboardType[] =
       searchedCaseDescriptionData;
@@ -163,12 +161,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({
       <Table bordered responsive>
         <thead>
           <tr style={caseTableHeaderRowStyle}>
-            <th style={{ width: "15%" }}>
-              <div style={{ cursor: "pointer" }}>
-                Date Referral{" "}
-                <Image src={sort} alt="sort" style={{ width: "10px" }} />
-              </div>
-            </th>
+            <th style={{ width: "15%" }}>Date Referral</th>
             <th style={{ width: "10%" }}>Case ID</th>
             <th style={{ width: "20%" }}>Description</th>
             <th style={{ width: "15%" }}>Scam Type</th>

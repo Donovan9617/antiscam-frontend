@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from "react";
-import { Button, Form, OverlayTrigger, Popover } from "react-bootstrap";
+import { Button, Form, Image, OverlayTrigger, Popover } from "react-bootstrap";
+import sort from "../../../../assets/svgs/sort.svg";
 import { CASE_DATE_ENUM, SORT_CASE_DATE_ENUM } from "../../../../types/enums";
 import { SortCaseDateType } from "../../../../types/types";
 
@@ -51,7 +52,9 @@ export const SortCase: React.FC<SortCaseProps> = ({
         </Popover>
       }
     >
-      <Button style={sortCaseStyle}>Sort</Button>
+      <Button style={sortCaseStyle}>
+        <Image src={sort} alt="sort" /> Sort
+      </Button>
     </OverlayTrigger>
   );
 };
