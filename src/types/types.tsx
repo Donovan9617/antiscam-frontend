@@ -1,4 +1,4 @@
-export type NavItemType = "dashboard" | "second";
+export type NavItemType = "dashboard" | "charts";
 
 export type CaseStatusType = "" | "None" | "Activated" | "Pending" | "Rejected";
 

@@ -26,7 +26,7 @@ export const SORT_CASE_DATE_ENUM = {
 
 export const NAV_ITEMS_ENUM = {
   DASHBOARD: "dashboard",
-  SECOND: "second",
+  CHARTS: "charts",
 } as const;
 
 export const CASE_SCAMTYPE_ENUM = {

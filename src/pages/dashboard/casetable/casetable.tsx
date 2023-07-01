@@ -162,12 +162,12 @@ export const CaseTable: React.FC<CaseTableProps> = ({
         <thead>
           <tr style={caseTableHeaderRowStyle}>
             <th style={{ width: "15%" }}>Date Referral</th>
-            <th style={{ width: "10%" }}>Case ID</th>
+            <th style={{ width: "15%" }}>Case ID</th>
             <th style={{ width: "20%" }}>Description</th>
             <th style={{ width: "15%" }}>Scam Type</th>
             <th style={{ width: "15%" }}>Assignee</th>
             <th style={{ width: "10%" }}>Status</th>
-            <th style={{ width: "15%" }}>Action</th>
+            <th style={{ width: "10%" }}>Action</th>
           </tr>
         </thead>
         <tbody>
