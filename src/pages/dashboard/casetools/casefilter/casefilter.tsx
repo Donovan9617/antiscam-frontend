@@ -6,14 +6,14 @@ import {
   FILTERED_CASE_STATUS_ENUM,
 } from "../../../../types/enums";
 import {
-  FilteredCaseDate,
+  FilteredCaseDateType,
   FilteredCaseStatusType,
 } from "../../../../types/types";
 
 interface FilterCaseProps {
   filteredCaseStatus: FilteredCaseStatusType;
   setFilteredCaseStatus: (status: FilteredCaseStatusType) => void;
-  setFilteredCaseDate: (date: FilteredCaseDate) => void;
+  setFilteredCaseDate: (date: FilteredCaseDateType) => void;
 }
 
 const filterCaseStyle: React.CSSProperties = {

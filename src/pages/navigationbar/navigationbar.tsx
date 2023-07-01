@@ -42,10 +42,10 @@ export const NavigationBar: React.FC = () => {
           <Nav.Item>
             <Nav.Link
               style={NavigationLinkStyle}
-              active={activeNavItem === NAV_ITEMS_ENUM.SECOND}
-              onClick={() => handleNavItemClick(NAV_ITEMS_ENUM.SECOND)}
+              active={activeNavItem === NAV_ITEMS_ENUM.CHARTS}
+              onClick={() => handleNavItemClick(NAV_ITEMS_ENUM.CHARTS)}
             >
-              Tab 2
+              Charts
             </Nav.Link>
           </Nav.Item>
         </Nav>

@@ -14,9 +14,19 @@ export const FILTERED_CASE_STATUS_ENUM = {
   REJECTED: "rejected",
 } as const;
 
+export const CASE_DATE_ENUM = {
+  NEW_TO_OLD: "Newest to Oldest",
+  OLD_TO_NEW: "Oldest to Newest",
+} as const;
+
+export const SORT_CASE_DATE_ENUM = {
+  NEW_TO_OLD: "newtoold",
+  OLD_TO_NEW: "oldtonew",
+} as const;
+
 export const NAV_ITEMS_ENUM = {
   DASHBOARD: "dashboard",
-  SECOND: "second",
+  CHARTS: "charts",
 } as const;
 
 export const CASE_SCAMTYPE_ENUM = {
