@@ -1,7 +1,12 @@
 import { Formik } from "formik";
 import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { CASE_FORM_SCHEMA } from "../../../types/enums";
+import {
+  BANK_ACCOUNT_ENUM,
+  CASE_FORM_SCHEMA,
+  CASE_SCAMTYPE_ENUM,
+  CASE_STATUS_ENUM,
+} from "../../../types/enums";
 import {
   BankAccountType,
   CaseInfoDataType,
@@ -37,6 +42,7 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
       assignee: values.assignee,
       status: values.status as CaseStatusType,
       description: values.description,
+      casefile: values.casefile,
     };
 
     console.log(updatedCaseInformation);
@@ -84,12 +90,14 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
               assignee: editedCaseInformation.assignee,
               status: editedCaseInformation.status,
               description: editedCaseInformation.description,
+              casefile: editedCaseInformation.casefile,
             }}
           >
             {({
               handleSubmit,
               handleChange,
               handleBlur,
+              setFieldValue,
               values,
               touched,
               errors,
@@ -131,20 +139,40 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
                       onBlur={handleBlur}
                       isInvalid={!!errors.scamtype && touched.scamtype}
                     >
-                      <option value="">Select Scam Type...</option>
-                      <option value="Job Scam">Job Scam</option>
-                      <option value="Investment Scam">Investment Scam</option>
-                      <option value="Love Scam">Love Scam</option>
-                      <option value="E-Commerce Scam">E-Commerce Scam</option>
-                      <option value="Lottery Scam">Lottery Scam</option>
-                      <option value="Parcel Scam">Parcel Scam</option>
-                      <option value="Tech Support Scam">
+                      <option value={CASE_SCAMTYPE_ENUM.NONE}>
+                        Select Scam Type...
+                      </option>
+                      <option value={CASE_SCAMTYPE_ENUM.JOB_SCAM}>
+                        Job Scam
+                      </option>
+                      <option value={CASE_SCAMTYPE_ENUM.INVESTMENT_SCAM}>
+                        Investment Scam
+                      </option>
+                      <option value={CASE_SCAMTYPE_ENUM.LOVE_SCAM}>
+                        Love Scam
+                      </option>
+                      <option value={CASE_SCAMTYPE_ENUM.ECOMMERCE_SCAM}>
+                        E-Commerce Scam
+                      </option>
+                      <option value={CASE_SCAMTYPE_ENUM.LOTTERY_SCAM}>
+                        Lottery Scam
+                      </option>
+                      <option value={CASE_SCAMTYPE_ENUM.PARCEL_SCAM}>
+                        Parcel Scam
+                      </option>
+                      <option value={CASE_SCAMTYPE_ENUM.TECH_SUPPORT_SCAM}>
                         Tech Support Scam
                       </option>
-                      <option value="Phishing Scam">Phishing Scam</option>
-                      <option value="Identity Theft">Identity Theft</option>
-                      <option value="Credit Card Scam">Credit Card Scam</option>
-                      <option value="Others">Others</option>
+                      <option value={CASE_SCAMTYPE_ENUM.PHISHING_SCAM}>
+                        Phishing Scam
+                      </option>
+                      <option value={CASE_SCAMTYPE_ENUM.IDENTITY_THEFT}>
+                        Identity Theft
+                      </option>
+                      <option value={CASE_SCAMTYPE_ENUM.CREDIT_CARD_SCAM}>
+                        Credit Card Scam
+                      </option>
+                      <option value={CASE_SCAMTYPE_ENUM.OTHERS}>Others</option>
                     </Form.Select>
                     <Form.Control.Feedback type="invalid">
                       {errors.scamtype}
@@ -162,17 +190,27 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
                       onBlur={handleBlur}
                       isInvalid={!!errors.bankaccount && touched.bankaccount}
                     >
-                      <option value="">Select Bank Account...</option>
-                      <option>DBS</option>
-                      <option>OCBC</option>
-                      <option>UOB</option>
-                      <option>Standard Chartered</option>
-                      <option>Citibank</option>
-                      <option>HSBC</option>
-                      <option>Maybank</option>
-                      <option>Bank of China</option>
-                      <option>CIMB</option>
-                      <option>Bank of America</option>
+                      <option value={BANK_ACCOUNT_ENUM.NONE}>
+                        Select Bank Account...
+                      </option>
+                      <option value={BANK_ACCOUNT_ENUM.DBS}>DBS</option>
+                      <option value={BANK_ACCOUNT_ENUM.OCBC}>OCBC</option>
+                      <option value={BANK_ACCOUNT_ENUM.UOB}>UOB</option>
+                      <option value={BANK_ACCOUNT_ENUM.STANDARD_CHARTERED}>
+                        Standard Chartered
+                      </option>
+                      <option value={BANK_ACCOUNT_ENUM.CITIBANK}>
+                        Citibank
+                      </option>
+                      <option value={BANK_ACCOUNT_ENUM.HSBC}>HSBC</option>
+                      <option value={BANK_ACCOUNT_ENUM.MAYBANK}>Maybank</option>
+                      <option value={BANK_ACCOUNT_ENUM.BANK_OF_CHINA}>
+                        Bank of China
+                      </option>
+                      <option value={BANK_ACCOUNT_ENUM.CIMB}>CIMB</option>
+                      <option value={BANK_ACCOUNT_ENUM.BANK_OF_AMERICA}>
+                        Bank of America
+                      </option>
                     </Form.Select>
                     <Form.Control.Feedback type="invalid">
                       {errors.bankaccount}
@@ -213,7 +251,7 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
                 </Row>
 
                 <Row>
-                  <Form.Group as={Col} className="mb-3" md="6">
+                  <Form.Group as={Col} className="mb-3" md="4">
                     <Form.Label>Assignee</Form.Label>
                     <Form.Control
                       type="text"
@@ -228,7 +266,7 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
                       {errors.assignee}
                     </Form.Control.Feedback>
                   </Form.Group>
-                  <Form.Group as={Col} className="mb-3" md="6">
+                  <Form.Group as={Col} className="mb-3" md="4">
                     <Form.Label>Status</Form.Label>
                     <Form.Select
                       name="status"
@@ -237,13 +275,63 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
                       onBlur={handleBlur}
                       isInvalid={!!errors.status && touched.bankaccount}
                     >
-                      <option value="">Select Case Status</option>
-                      <option>Pending</option>
-                      <option>Activated</option>
-                      <option>Rejected</option>
+                      <option value={CASE_STATUS_ENUM.NONE}>
+                        Select Case Status
+                      </option>
+                      <option value={CASE_STATUS_ENUM.PENDING}>Pending</option>
+                      <option value={CASE_STATUS_ENUM.ACTIVATED}>
+                        Activated
+                      </option>
+                      <option value={CASE_STATUS_ENUM.REJECTED}>
+                        Rejected
+                      </option>
                     </Form.Select>
                     <Form.Control.Feedback type="invalid">
                       {errors.status}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  <Form.Group as={Col} className="mb-3" md="4">
+                    <Form.Label>Case File (Optional)</Form.Label>
+                    <Form.Control
+                      type="file"
+                      name="casefile"
+                      onChange={(event) => {
+                        const file: File | undefined = (
+                          event.currentTarget as HTMLInputElement
+                        ).files?.[0];
+                        setFieldValue("casefile", file);
+                      }}
+                      isInvalid={touched.casefile && !!errors.casefile}
+                    />
+                    {values.casefile ? (
+                      <>
+                        Currently uploaded file:{" "}
+                        <a
+                          href={URL.createObjectURL(values.casefile)}
+                          download={values.casefile.name}
+                          style={{ color: "black" }}
+                        >
+                          {values.casefile.name}
+                        </a>{" "}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          className="bi bi-trash"
+                          viewBox="0 0 16 16"
+                          onClick={() => setFieldValue("casefile", undefined)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                          <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                        </svg>
+                      </>
+                    ) : (
+                      "No uploaded file"
+                    )}
+                    <Form.Control.Feedback type="invalid">
+                      {errors.casefile}
                     </Form.Control.Feedback>
                   </Form.Group>
                 </Row>

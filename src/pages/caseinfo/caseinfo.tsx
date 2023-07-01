@@ -32,6 +32,7 @@ export const CaseInfo: React.FC = () => {
   useEffect(() => {
     // API call to backend to obtain JSON with this obtained caseid
     // Since no DB yet, we assume this is the returned data
+
     const data: CaseInfoDataType = {
       caseid: "c17ff314-87f0-49e5-8adc-a5c3dceaa44b",
       datereferral: new Date(2023, 5, 10, 21, 0),
@@ -43,6 +44,8 @@ export const CaseInfo: React.FC = () => {
       assignee: "Tom",
       status: CASE_STATUS_ENUM.ACTIVATED,
       description: "Testing",
+      casefile: undefined,
+      // casefile: new File([], "case_info.pdf", { type: "application/pdf" }),
     };
     setCaseInformation(data);
   }, [editMode]);

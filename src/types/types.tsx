@@ -53,8 +53,6 @@ export interface CaseDataDashboardType {
   status: CaseStatusType;
 }
 
-export interface NewCaseFormValuesType extends CaseInfoDataType {}
-
 export interface CaseInfoDataType {
   caseid: string;
   datereferral: Date;
@@ -66,7 +64,10 @@ export interface CaseInfoDataType {
   assignee: string;
   status: CaseStatusType;
   description: string;
+  casefile?: File;
 }
+
+export interface NewCaseFormValuesType extends CaseInfoDataType {}
 
 export interface CaseInfoEditFormValuesProps {
   datereferral: string;
@@ -78,6 +79,7 @@ export interface CaseInfoEditFormValuesProps {
   assignee: string;
   status: string;
   description: string;
+  casefile?: File;
 }
 
 export interface NewCaseFormValuesProps extends CaseInfoEditFormValuesProps {
