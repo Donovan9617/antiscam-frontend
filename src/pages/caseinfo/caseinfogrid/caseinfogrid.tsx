@@ -53,13 +53,29 @@ export const CaseInfoGrid: React.FC<CaseInfoGridProps> = ({
         </Col>
       </Row>
       <Row>
-        <Col className="mb-4" md="6">
+        <Col className="mb-4" md="4">
           <h6>Assignee:</h6>
           <p>{caseInformation && caseInformation.assignee}</p>
         </Col>
-        <Col className="mb-4" md="6">
+        <Col className="mb-4" md="4">
           <h6>Status:</h6>
           <p>{caseInformation && caseInformation.status}</p>
+        </Col>
+        <Col className="mb-4" md="4">
+          <h6>Case File (Optional):</h6>
+          {caseInformation && caseInformation.casefile ? (
+            <div>
+              <a
+                href={URL.createObjectURL(caseInformation.casefile)}
+                download={caseInformation.casefile.name}
+                style={{ color: "black" }}
+              >
+                {caseInformation.casefile.name}
+              </a>
+            </div>
+          ) : (
+            "-"
+          )}
         </Col>
       </Row>
       <Row>

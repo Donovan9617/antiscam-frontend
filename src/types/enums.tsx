@@ -30,16 +30,22 @@ export const NAV_ITEMS_ENUM = {
 } as const;
 
 export const CASE_SCAMTYPE_ENUM = {
+  NONE: "",
   JOB_SCAM: "Job Scam",
   INVESTMENT_SCAM: "Investment Scam",
   LOVE_SCAM: "Love Scam",
   ECOMMERCE_SCAM: "E-Commerce Scam",
   LOTTERY_SCAM: "Lottery Scam",
   PARCEL_SCAM: "Parcel Scam",
+  TECH_SUPPORT_SCAM: "Tech Support Scam",
+  PHISHING_SCAM: "Phishing Scam",
+  IDENTITY_THEFT: "Identity Theft",
+  CREDIT_CARD_SCAM: "Credit Card Scam",
   OTHERS: "Others",
 } as const;
 
 export const BANK_ACCOUNT_ENUM = {
+  NONE: "",
   DBS: "DBS",
   OCBC: "OCBC",
   UOB: "UOB",
@@ -68,4 +74,5 @@ export const CASE_FORM_SCHEMA = yup.object().shape({
   assignee: yup.string().required("Assignee is required"),
   status: yup.string().required("Case status is required"),
   description: yup.string().required("Case description is required"),
+  casefile: yup.mixed().optional(),
 });

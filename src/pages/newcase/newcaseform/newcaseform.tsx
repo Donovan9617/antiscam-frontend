@@ -2,7 +2,12 @@ import * as formik from "formik";
 import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { v4 } from "uuid";
-import { CASE_FORM_SCHEMA } from "../../../types/enums";
+import {
+  BANK_ACCOUNT_ENUM,
+  CASE_FORM_SCHEMA,
+  CASE_SCAMTYPE_ENUM,
+  CASE_STATUS_ENUM,
+} from "../../../types/enums";
 import {
   BankAccountType,
   CaseInfoDataType,
@@ -34,6 +39,7 @@ export const NewCaseForm: React.FC = () => {
       assignee: values.assignee,
       status: values.status as CaseStatusType,
       description: values.description,
+      casefile: values.casefile,
     };
     console.log(data);
 
@@ -75,12 +81,14 @@ export const NewCaseForm: React.FC = () => {
           assignee: "",
           status: "",
           description: "",
+          file: undefined,
         }}
       >
         {({
           handleSubmit,
           handleChange,
           handleBlur,
+          setFieldValue,
           values,
           touched,
           errors,
@@ -116,18 +124,38 @@ export const NewCaseForm: React.FC = () => {
                   onBlur={handleBlur}
                   isInvalid={!!errors.scamtype && touched.scamtype}
                 >
-                  <option value="">Select Scam Type...</option>
-                  <option value="Job Scam">Job Scam</option>
-                  <option value="Investment Scam">Investment Scam</option>
-                  <option value="Love Scam">Love Scam</option>
-                  <option value="E-Commerce Scam">E-Commerce Scam</option>
-                  <option value="Lottery Scam">Lottery Scam</option>
-                  <option value="Parcel Scam">Parcel Scam</option>
-                  <option value="Tech Support Scam">Tech Support Scam</option>
-                  <option value="Phishing Scam">Phishing Scam</option>
-                  <option value="Identity Theft">Identity Theft</option>
-                  <option value="Credit Card Scam">Credit Card Scam</option>
-                  <option value="Others">Others</option>
+                  <option value={CASE_SCAMTYPE_ENUM.NONE}>
+                    Select Scam Type...
+                  </option>
+                  <option value={CASE_SCAMTYPE_ENUM.JOB_SCAM}>Job Scam</option>
+                  <option value={CASE_SCAMTYPE_ENUM.INVESTMENT_SCAM}>
+                    Investment Scam
+                  </option>
+                  <option value={CASE_SCAMTYPE_ENUM.LOVE_SCAM}>
+                    Love Scam
+                  </option>
+                  <option value={CASE_SCAMTYPE_ENUM.ECOMMERCE_SCAM}>
+                    E-Commerce Scam
+                  </option>
+                  <option value={CASE_SCAMTYPE_ENUM.LOTTERY_SCAM}>
+                    Lottery Scam
+                  </option>
+                  <option value={CASE_SCAMTYPE_ENUM.PARCEL_SCAM}>
+                    Parcel Scam
+                  </option>
+                  <option value={CASE_SCAMTYPE_ENUM.TECH_SUPPORT_SCAM}>
+                    Tech Support Scam
+                  </option>
+                  <option value={CASE_SCAMTYPE_ENUM.PHISHING_SCAM}>
+                    Phishing Scam
+                  </option>
+                  <option value={CASE_SCAMTYPE_ENUM.IDENTITY_THEFT}>
+                    Identity Theft
+                  </option>
+                  <option value={CASE_SCAMTYPE_ENUM.CREDIT_CARD_SCAM}>
+                    Credit Card Scam
+                  </option>
+                  <option value={CASE_SCAMTYPE_ENUM.OTHERS}>Others</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.scamtype}
@@ -145,17 +173,25 @@ export const NewCaseForm: React.FC = () => {
                   onBlur={handleBlur}
                   isInvalid={!!errors.bankaccount && touched.bankaccount}
                 >
-                  <option value="">Select Bank Account...</option>
-                  <option>DBS</option>
-                  <option>OCBC</option>
-                  <option>UOB</option>
-                  <option>Standard Chartered</option>
-                  <option>Citibank</option>
-                  <option>HSBC</option>
-                  <option>Maybank</option>
-                  <option>Bank of China</option>
-                  <option>CIMB</option>
-                  <option>Bank of America</option>
+                  <option value={BANK_ACCOUNT_ENUM.NONE}>
+                    Select Bank Account...
+                  </option>
+                  <option value={BANK_ACCOUNT_ENUM.DBS}>DBS</option>
+                  <option value={BANK_ACCOUNT_ENUM.OCBC}>OCBC</option>
+                  <option value={BANK_ACCOUNT_ENUM.UOB}>UOB</option>
+                  <option value={BANK_ACCOUNT_ENUM.STANDARD_CHARTERED}>
+                    Standard Chartered
+                  </option>
+                  <option value={BANK_ACCOUNT_ENUM.CITIBANK}>Citibank</option>
+                  <option value={BANK_ACCOUNT_ENUM.HSBC}>HSBC</option>
+                  <option value={BANK_ACCOUNT_ENUM.MAYBANK}>Maybank</option>
+                  <option value={BANK_ACCOUNT_ENUM.BANK_OF_CHINA}>
+                    Bank of China
+                  </option>
+                  <option value={BANK_ACCOUNT_ENUM.CIMB}>CIMB</option>
+                  <option value={BANK_ACCOUNT_ENUM.BANK_OF_AMERICA}>
+                    Bank of America
+                  </option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.bankaccount}
@@ -231,10 +267,12 @@ export const NewCaseForm: React.FC = () => {
                   onBlur={handleBlur}
                   isInvalid={!!errors.status && touched.bankaccount}
                 >
-                  <option value="">Select Case Status</option>
-                  <option>Pending</option>
-                  <option>Activated</option>
-                  <option>Rejected</option>
+                  <option value={CASE_STATUS_ENUM.NONE}>
+                    Select Case Status
+                  </option>
+                  <option value={CASE_STATUS_ENUM.PENDING}>Pending</option>
+                  <option value={CASE_STATUS_ENUM.ACTIVATED}>Activated</option>
+                  <option value={CASE_STATUS_ENUM.REJECTED}>Rejected</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.status}
@@ -256,6 +294,24 @@ export const NewCaseForm: React.FC = () => {
               />
               <Form.Control.Feedback type="invalid">
                 {errors.description}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Case File (Optional)</Form.Label>
+              <Form.Control
+                type="file"
+                name="casefile"
+                onChange={(event) => {
+                  const file: File | undefined = (
+                    event.currentTarget as HTMLInputElement
+                  ).files?.[0];
+                  setFieldValue("casefile", file);
+                }}
+                isInvalid={touched.casefile && !!errors.casefile}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.casefile}
               </Form.Control.Feedback>
             </Form.Group>
 
