@@ -74,7 +74,7 @@ export const CaseInfoGrid: React.FC<CaseInfoGridProps> = ({
               </a>
             </div>
           ) : (
-            "No uploaded file"
+            "-"
           )}
         </Col>
       </Row>
