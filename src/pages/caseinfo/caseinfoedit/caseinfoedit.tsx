@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { editCaseInfo } from "../../../api/api";
 import {
   BANK_ACCOUNT_ENUM,
   CASE_FORM_SCHEMA,
@@ -28,7 +29,7 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
     CaseInfoDataType | undefined
   >(caseInformation);
 
-  const saveCaseInformation: (values: CaseInfoEditFormValuesProps) => void = (
+  const handleSave: (values: CaseInfoEditFormValuesProps) => void = (
     values
   ) => {
     const updatedCaseInformation: CaseInfoDataType = {
@@ -47,28 +48,10 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
 
     console.log(updatedCaseInformation);
 
-    // Make an API call to backend to save the edited JSON case data
-    //   try {
-    //     const response = await fetch("your-api-endpoint", {
-    //       method: "PUT",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify(updatedCaseInformation),
-    //     });
-
-    //     if (!response.ok) {
-    //       throw new Error("Failed to save case information");
-    //     }
-    //     const updatedData = await response.json();
-    //     setEditedCaseInformation(updatedData);
-    //     setEditMode(false);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-
-    setEditMode(false);
+    editCaseInfo(updatedCaseInformation).then((response: {}) => {
+      setEditedCaseInformation(response as CaseInfoDataType);
+      setEditMode(false);
+    });
   };
 
   return (
@@ -77,7 +60,7 @@ export const CaseInfoEdit: React.FC<CaseInfoEditProps> = ({
         <Container className="mt-5">
           <Formik
             validationSchema={CASE_FORM_SCHEMA}
-            onSubmit={saveCaseInformation}
+            onSubmit={handleSave}
             initialValues={{
               datereferral: editedCaseInformation.datereferral
                 .toISOString()

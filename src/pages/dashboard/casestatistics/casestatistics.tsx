@@ -1,10 +1,10 @@
 import { Container, Row } from "react-bootstrap";
+import { MostFrequentScamCard } from "../../../components/casestatisticcard/mostfrequentscamcard";
+import { StatusScamsCard } from "../../../components/casestatisticcard/statusscamscard";
 import { CaseDataDashboardType } from "../../../types/types";
-import { MostFrequentScamCard } from "./casestatisticcard/mostfrequentscamcard";
-import { StatusScamsCard } from "./casestatisticcard/statusscamscard";
 
 interface CaseStatisticsProps {
-  caseData: CaseDataDashboardType[];
+  caseData: CaseDataDashboardType[] | undefined;
 }
 
 export const CaseStatistics: React.FC<CaseStatisticsProps> = ({

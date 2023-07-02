@@ -1,7 +1,7 @@
 import * as formik from "formik";
-import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { v4 } from "uuid";
+import { createNewCase } from "../../../api/api";
 import {
   BANK_ACCOUNT_ENUM,
   CASE_FORM_SCHEMA,
@@ -21,9 +21,6 @@ export const NewCaseForm: React.FC = () => {
   const currentDate = new Date();
   const dateString = currentDate.toISOString().substring(0, 10);
   const caseId = v4();
-  const [createCaseData, setCreateCaseData] = useState<
-    CaseInfoDataType | undefined
-  >();
 
   const handleCreateNewCase: (values: NewCaseFormValuesProps) => void = async (
     values
@@ -42,27 +39,7 @@ export const NewCaseForm: React.FC = () => {
       casefile: values.casefile,
     };
     console.log(data);
-
-    // Make an API call to backend to save the new JSON case data
-    //   try {
-    //     const response = await fetch("your-api-endpoint", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify(data),
-    //     });
-
-    //     if (response.ok) {
-    //       const responseData = await response.json();
-    //       setCreateCaseData(responseData);
-    //       console.log(responseData);
-    //     } else {
-    //       console.log("Case creation failed");
-    //     }
-    //   } catch (error) {
-    //     console.log("Error occurred during case creation:", error);
-    //   }
+    createNewCase(data);
   };
 
   return (

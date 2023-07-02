@@ -7,11 +7,6 @@ interface SortCaseProps {
   sortedCaseDate: SortCaseDateType;
   setSortedCaseDate: (date: SortCaseDateType) => void;
 }
-
-const sortCaseStyle: React.CSSProperties = {
-  marginRight: 10,
-};
-
 export const SortCase: React.FC<SortCaseProps> = ({
   sortedCaseDate,
   setSortedCaseDate,
@@ -51,7 +46,7 @@ export const SortCase: React.FC<SortCaseProps> = ({
         </Popover>
       }
     >
-      <Button style={sortCaseStyle}>
+      <Button>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

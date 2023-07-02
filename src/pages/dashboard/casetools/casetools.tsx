@@ -21,6 +21,7 @@ const caseToolsRowStyle: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   flexWrap: "wrap",
+  gap: "10px",
 };
 
 export const CaseTools: React.FC<CaseToolsProps> = ({

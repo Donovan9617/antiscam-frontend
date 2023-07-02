@@ -1,8 +1,8 @@
 import { Card } from "react-bootstrap";
-import { CaseDataDashboardType } from "../../../../types/types";
+import { CaseDataDashboardType } from "../../types/types";
 
 interface MostPopularScamCardProps {
-  caseData: CaseDataDashboardType[];
+  caseData: CaseDataDashboardType[] | undefined;
 }
 
 export const MostFrequentScamCard: React.FC<MostPopularScamCardProps> = ({
@@ -10,14 +10,15 @@ export const MostFrequentScamCard: React.FC<MostPopularScamCardProps> = ({
 }: MostPopularScamCardProps) => {
   // Count the occurrences of each scam type
   const scamTypeCounts: { [key: string]: number } = {};
-  caseData.forEach((caseDataItem) => {
-    const scamType = caseDataItem.scamtype;
-    if (scamTypeCounts[scamType]) {
-      scamTypeCounts[scamType] += 1;
-    } else {
-      scamTypeCounts[scamType] = 1;
-    }
-  });
+  caseData &&
+    caseData.forEach((caseDataItem) => {
+      const scamType = caseDataItem.scamtype;
+      if (scamTypeCounts[scamType]) {
+        scamTypeCounts[scamType] += 1;
+      } else {
+        scamTypeCounts[scamType] = 1;
+      }
+    });
 
   // Find the scam type with the highest count
   let mostPopularScamType = "";

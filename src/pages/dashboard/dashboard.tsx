@@ -17,7 +17,9 @@ import { CaseTable } from "./casetable/casetable";
 import { CaseTools } from "./casetools/casetools";
 
 export const Dashboard: React.FC = () => {
-  const [caseData, setCaseData] = useState<CaseDataDashboardType[]>([]);
+  const [caseData, setCaseData] = useState<CaseDataDashboardType[] | undefined>(
+    []
+  );
   const [searchedCaseDescription, setSearchedCaseDescription] =
     useState<string>("");
   const [filteredCaseStatus, setFilteredCaseStatus] =
@@ -32,7 +34,7 @@ export const Dashboard: React.FC = () => {
   );
 
   useEffect(() => {
-    // API call to obtain the backend data in JSON
+    // Mock data for now
     const data: CaseDataDashboardType[] = [
       {
         datereferral: new Date(2023, 7, 10, 21, 0),
@@ -114,11 +116,26 @@ export const Dashboard: React.FC = () => {
         assignee: "Tom",
         status: CASE_STATUS_ENUM.PENDING,
       },
+      {
+        datereferral: new Date(2023, 1, 10, 18, 0),
+        caseid: "6247b962-073b-4a6f-a8ba-a020c2ef0ecd",
+        description: "Testingo",
+        scamtype: CASE_SCAMTYPE_ENUM.JOB_SCAM,
+        assignee: "Tom",
+        status: CASE_STATUS_ENUM.ACTIVATED,
+      },
     ];
     data.sort((a, b) => {
       return b.datereferral.getTime() - a.datereferral.getTime();
     });
     setCaseData(data);
+
+    // getAllCases().then((data: CaseDataDashboardType[]) => {
+    //   data.sort((a, b) => {
+    //     return b.datereferral.getTime() - a.datereferral.getTime();
+    //   });
+    //   setCaseData(data);
+    // });
   }, []);
 
   return (

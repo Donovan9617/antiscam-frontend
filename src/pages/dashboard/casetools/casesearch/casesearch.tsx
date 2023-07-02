@@ -11,7 +11,7 @@ const caseSearchBarStyle: React.CSSProperties = {
 };
 
 const caseSearchBarInputStyle: React.CSSProperties = {
-  width: "250px",
+  width: "40vw",
 };
 
 const caseSearchIconTextStyle: React.CSSProperties = {
@@ -21,16 +21,9 @@ const caseSearchIconTextStyle: React.CSSProperties = {
   cursor: "pointer",
 };
 
-const caseSearchIconStyle: React.CSSProperties = {
-  width: "16px",
-  height: "16px",
-};
-
 export const CaseSearch: React.FC<CaseSearchProps> = ({
   setSearchedCaseDescription,
 }: CaseSearchProps) => {
-  const handleSearch: () => void = () => {};
-
   return (
     <Form style={caseSearchBarStyle}>
       <InputGroup>
