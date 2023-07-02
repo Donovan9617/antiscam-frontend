@@ -2,13 +2,13 @@ import { Card } from "react-bootstrap";
 import { CASE_STATUS_ENUM } from "../../types/enums";
 import { CaseDataDashboardType } from "../../types/types";
 
-interface StatusScamCard {
+interface TotalCaseStatusCardProps {
   caseData: CaseDataDashboardType[] | undefined;
 }
 
-export const StatusScamsCard: React.FC<StatusScamCard> = ({
+export const TotalCaseStatusCard: React.FC<TotalCaseStatusCardProps> = ({
   caseData,
-}: StatusScamCard) => {
+}: TotalCaseStatusCardProps) => {
   const activatedCases = caseData?.filter(
     (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.ACTIVATED
   );

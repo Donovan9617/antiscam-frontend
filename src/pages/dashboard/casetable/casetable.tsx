@@ -15,6 +15,7 @@ import {
   FilteredCaseStatusType,
   SortCaseDateType,
 } from "../../../types/types";
+import { CasePagination } from "./casepagination/casepagination";
 
 interface CaseTableProps {
   caseData: CaseDataDashboardType[] | undefined;
@@ -35,10 +36,10 @@ export const CaseTable: React.FC<CaseTableProps> = ({
     CaseDataDashboardType[] | undefined
   >([]);
   const navigate = useNavigate();
-  // const [currentPage, setCurrentPage] = useState<number>(1);
-  // const ITEMS_PER_PAGE = 10;
-  // const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  // const endIndex = startIndex + ITEMS_PER_PAGE;
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const ITEMS_PER_PAGE = 10;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
 
   const caseTableStyle: React.CSSProperties = { textAlign: "center" };
   const caseTableHeaderRowStyle: React.CSSProperties = {
@@ -150,7 +151,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({
         <tbody>
           {caseDataToShow &&
             (caseDataToShow.length > 0 ? (
-              caseDataToShow.map((caseDataItem) => (
+              caseDataToShow.slice(startIndex, endIndex).map((caseDataItem) => (
                 <tr key={caseDataItem.caseid}>
                   <td style={{ ...caseTableDataStyle }}>
                     {formatDateReferral(caseDataItem.datereferral)}
@@ -200,13 +201,13 @@ export const CaseTable: React.FC<CaseTableProps> = ({
             ))}
         </tbody>
       </Table>
-      {/* <CasePagination
+      <CasePagination
         caseData={caseData}
         caseDataToShow={caseDataToShow}
         ITEMS_PER_PAGE={ITEMS_PER_PAGE}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-      /> */}
+      />
     </div>
   );
 };

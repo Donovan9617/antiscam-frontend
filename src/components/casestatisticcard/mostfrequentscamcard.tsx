@@ -1,13 +1,13 @@
 import { Card } from "react-bootstrap";
 import { CaseDataDashboardType } from "../../types/types";
 
-interface MostPopularScamCardProps {
+interface MostFrequentScamCardProps {
   caseData: CaseDataDashboardType[] | undefined;
 }
 
-export const MostFrequentScamCard: React.FC<MostPopularScamCardProps> = ({
+export const MostFrequentScamCard: React.FC<MostFrequentScamCardProps> = ({
   caseData,
-}: MostPopularScamCardProps) => {
+}: MostFrequentScamCardProps) => {
   // Count the occurrences of each scam type
   const scamTypeCounts: { [key: string]: number } = {};
   caseData?.forEach((caseDataItem) => {
@@ -20,12 +20,18 @@ export const MostFrequentScamCard: React.FC<MostPopularScamCardProps> = ({
   });
 
   // Find the scam type with the highest count
-  let mostPopularScamType = "";
-  let highestCount = 0;
+  const top3ScamTypes: { scamType: string; count: number }[] = [];
   for (const scamType in scamTypeCounts) {
-    if (scamTypeCounts[scamType] > highestCount) {
-      highestCount = scamTypeCounts[scamType];
-      mostPopularScamType = scamType;
+    const count = scamTypeCounts[scamType];
+    if (top3ScamTypes.length < 3) {
+      top3ScamTypes.push({ scamType, count });
+    } else {
+      const lowestCountIndex = top3ScamTypes.findIndex(
+        (item) => item.count < count
+      );
+      if (lowestCountIndex !== -1) {
+        top3ScamTypes.splice(lowestCountIndex, 1, { scamType, count });
+      }
     }
   }
   return (
@@ -35,8 +41,20 @@ export const MostFrequentScamCard: React.FC<MostPopularScamCardProps> = ({
       style={{ width: "18rem", marginRight: 20 }}
     >
       <Card.Body>
-        <Card.Title>Most Popular Scam</Card.Title>
-        <Card.Text>{mostPopularScamType}</Card.Text>
+        <Card.Title>Most Frequent Scams</Card.Title>
+
+        <Card.Text>
+          {top3ScamTypes.map((item, index) => {
+            return (
+              <>
+                {`${index + 1}. ${item.scamType} (${item.count} ${
+                  item.count === 1 ? "case" : "cases"
+                })`}
+                <br />
+              </>
+            );
+          })}
+        </Card.Text>
       </Card.Body>
     </Card>
   );
