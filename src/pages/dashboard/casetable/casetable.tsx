@@ -15,7 +15,6 @@ import {
   FilteredCaseStatusType,
   SortCaseDateType,
 } from "../../../types/types";
-import { CasePagination } from "./casepagination/casepagination";
 
 interface CaseTableProps {
   caseData: CaseDataDashboardType[] | undefined;
@@ -36,10 +35,10 @@ export const CaseTable: React.FC<CaseTableProps> = ({
     CaseDataDashboardType[] | undefined
   >([]);
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const ITEMS_PER_PAGE = 10;
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
+  // const [currentPage, setCurrentPage] = useState<number>(1);
+  // const ITEMS_PER_PAGE = 10;
+  // const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  // const endIndex = startIndex + ITEMS_PER_PAGE;
 
   const caseTableStyle: React.CSSProperties = { textAlign: "center" };
   const caseTableHeaderRowStyle: React.CSSProperties = {
@@ -78,86 +77,52 @@ export const CaseTable: React.FC<CaseTableProps> = ({
 
   useEffect(() => {
     // Filter
-    let filteredCaseStatusData: CaseDataDashboardType[] | undefined = [];
+    let filteredCaseStatusData = caseData;
     switch (filteredCaseStatus) {
       case FILTERED_CASE_STATUS_ENUM.ACTIVATED:
-        filteredCaseStatusData =
-          caseData &&
-          caseData.filter(
-            (caseItem) => caseItem.status === CASE_STATUS_ENUM.ACTIVATED
-          );
+        filteredCaseStatusData = caseData?.filter(
+          (caseItem) => caseItem.status === CASE_STATUS_ENUM.ACTIVATED
+        );
         break;
       case FILTERED_CASE_STATUS_ENUM.PENDING:
-        filteredCaseStatusData =
-          caseData &&
-          caseData.filter(
-            (caseItem) => caseItem.status === CASE_STATUS_ENUM.PENDING
-          );
+        filteredCaseStatusData = caseData?.filter(
+          (caseItem) => caseItem.status === CASE_STATUS_ENUM.PENDING
+        );
         break;
       case FILTERED_CASE_STATUS_ENUM.REJECTED:
-        filteredCaseStatusData =
-          caseData &&
-          caseData.filter(
-            (caseItem) => caseItem.status === CASE_STATUS_ENUM.REJECTED
-          );
+        filteredCaseStatusData = caseData?.filter(
+          (caseItem) => caseItem.status === CASE_STATUS_ENUM.REJECTED
+        );
         break;
       case FILTERED_CASE_STATUS_ENUM.NONE:
-        filteredCaseStatusData = caseData && caseData;
+        filteredCaseStatusData = caseData;
         break;
       default:
         break;
-    }
-    let filteredCaseDateData: CaseDataDashboardType[] | undefined =
-      filteredCaseStatusData;
-    if (filteredCaseDate.startDate && filteredCaseDate.endDate) {
-      const startDateTime = new Date(filteredCaseDate.startDate).setHours(
-        0,
-        0,
-        0,
-        0
-      );
-      const endDateTime = new Date(filteredCaseDate.endDate).setHours(
-        23,
-        59,
-        59,
-        999
-      );
-      filteredCaseDateData =
-        filteredCaseDateData &&
-        filteredCaseDateData.filter((caseItem) => {
-          const caseItemDateTime = caseItem.datereferral.getTime();
-          return (
-            caseItemDateTime >= startDateTime && caseItemDateTime <= endDateTime
-          );
-        });
     }
 
     // Search
-    const searchedCaseDescriptionData: CaseDataDashboardType[] | undefined =
-      filteredCaseDateData &&
-      filteredCaseDateData.filter((caseItem) => {
-        return caseItem.description.includes(searchedCaseDescription);
-      });
+    let searchedCaseDescriptionData = filteredCaseStatusData;
+    if (searchedCaseDescription) {
+      searchedCaseDescriptionData = filteredCaseStatusData?.filter(
+        (caseItem) => {
+          return caseItem.description.includes(searchedCaseDescription);
+        }
+      );
+    }
 
     // Sort
-    const sortedCaseDateData: CaseDataDashboardType[] | undefined =
-      searchedCaseDescriptionData;
-    switch (sortedCaseDate) {
-      case SORT_CASE_DATE_ENUM.NEW_TO_OLD:
-        sortedCaseDateData &&
-          sortedCaseDateData.sort((a, b) => {
-            return b.datereferral.getTime() - a.datereferral.getTime();
-          });
-        break;
-      case SORT_CASE_DATE_ENUM.OLD_TO_NEW:
-        sortedCaseDateData &&
-          sortedCaseDateData.sort((a, b) => {
+    let sortedCaseDateData = searchedCaseDescriptionData
+      ? [...searchedCaseDescriptionData].sort((a, b) => {
+          if (sortedCaseDate === SORT_CASE_DATE_ENUM.OLD_TO_NEW) {
             return a.datereferral.getTime() - b.datereferral.getTime();
-          });
-        break;
-      default:
-        break;
-    }
+          } else if (sortedCaseDate === SORT_CASE_DATE_ENUM.NEW_TO_OLD) {
+            return b.datereferral.getTime() - a.datereferral.getTime();
+          } else {
+            return 0;
+          }
+        })
+      : [];
 
     setCaseDataToShow(sortedCaseDateData);
   }, [
@@ -185,7 +150,7 @@ export const CaseTable: React.FC<CaseTableProps> = ({
         <tbody>
           {caseDataToShow &&
             (caseDataToShow.length > 0 ? (
-              caseDataToShow.slice(startIndex, endIndex).map((caseDataItem) => (
+              caseDataToShow.map((caseDataItem) => (
                 <tr key={caseDataItem.caseid}>
                   <td style={{ ...caseTableDataStyle }}>
                     {formatDateReferral(caseDataItem.datereferral)}
@@ -235,13 +200,13 @@ export const CaseTable: React.FC<CaseTableProps> = ({
             ))}
         </tbody>
       </Table>
-      <CasePagination
+      {/* <CasePagination
         caseData={caseData}
         caseDataToShow={caseDataToShow}
         ITEMS_PER_PAGE={ITEMS_PER_PAGE}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-      />
+      /> */}
     </div>
   );
 };

@@ -109,14 +109,6 @@ export const Dashboard: React.FC = () => {
         status: CASE_STATUS_ENUM.PENDING,
       },
       {
-        datereferral: new Date(2023, 3, 10, 2, 0),
-        caseid: "6247b962-073b-4a6f-a8ba-a020c2ef0ecd",
-        description: "Testing againnn",
-        scamtype: CASE_SCAMTYPE_ENUM.PARCEL_SCAM,
-        assignee: "Tom",
-        status: CASE_STATUS_ENUM.PENDING,
-      },
-      {
         datereferral: new Date(2023, 1, 10, 18, 0),
         caseid: "6247b962-073b-4a6f-a8ba-a020c2ef0ecd",
         description: "Testingo",

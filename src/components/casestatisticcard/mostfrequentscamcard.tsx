@@ -10,15 +10,14 @@ export const MostFrequentScamCard: React.FC<MostPopularScamCardProps> = ({
 }: MostPopularScamCardProps) => {
   // Count the occurrences of each scam type
   const scamTypeCounts: { [key: string]: number } = {};
-  caseData &&
-    caseData.forEach((caseDataItem) => {
-      const scamType = caseDataItem.scamtype;
-      if (scamTypeCounts[scamType]) {
-        scamTypeCounts[scamType] += 1;
-      } else {
-        scamTypeCounts[scamType] = 1;
-      }
-    });
+  caseData?.forEach((caseDataItem) => {
+    const scamType = caseDataItem.scamtype;
+    if (scamTypeCounts[scamType]) {
+      scamTypeCounts[scamType] += 1;
+    } else {
+      scamTypeCounts[scamType] = 1;
+    }
+  });
 
   // Find the scam type with the highest count
   let mostPopularScamType = "";

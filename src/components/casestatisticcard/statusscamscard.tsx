@@ -9,21 +9,15 @@ interface StatusScamCard {
 export const StatusScamsCard: React.FC<StatusScamCard> = ({
   caseData,
 }: StatusScamCard) => {
-  const activatedCases =
-    caseData &&
-    caseData.filter(
-      (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.ACTIVATED
-    );
-  const pendingactivationCases =
-    caseData &&
-    caseData.filter(
-      (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.PENDING
-    );
-  const rejectedCases =
-    caseData &&
-    caseData.filter(
-      (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.REJECTED
-    );
+  const activatedCases = caseData?.filter(
+    (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.ACTIVATED
+  );
+  const pendingactivationCases = caseData?.filter(
+    (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.PENDING
+  );
+  const rejectedCases = caseData?.filter(
+    (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.REJECTED
+  );
   return (
     <Card
       border="primary"
@@ -33,11 +27,11 @@ export const StatusScamsCard: React.FC<StatusScamCard> = ({
       <Card.Body>
         <Card.Title>Total Case Status</Card.Title>
         <Card.Text>
-          Activated: {activatedCases && activatedCases.length}
+          Activated: {activatedCases?.length}
           <br />
-          Pending: {pendingactivationCases && pendingactivationCases.length}
+          Pending: {pendingactivationCases?.length}
           <br />
-          Rejected: {rejectedCases && rejectedCases.length}
+          Rejected: {rejectedCases?.length}
         </Card.Text>
       </Card.Body>
     </Card>

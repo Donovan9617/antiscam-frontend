@@ -21,8 +21,7 @@ export const CasePagination: React.FC<CasePaginationProps> = ({
     caseDataToShow && Math.ceil(caseDataToShow.length / ITEMS_PER_PAGE);
 
   const caseDataCurrentPage: CaseDataDashboardType[] | undefined =
-    caseDataToShow &&
-    caseDataToShow.slice(
+    caseDataToShow?.slice(
       (currentPage - 1) * ITEMS_PER_PAGE,
       currentPage * ITEMS_PER_PAGE
     );
