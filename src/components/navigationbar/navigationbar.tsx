@@ -3,6 +3,7 @@ import { Nav, Navbar } from "react-bootstrap";
 import { ROUTES } from "../../config";
 import { NAV_ITEMS_ENUM } from "../../types/enums";
 import { NavItemType } from "../../types/types";
+import { DarkModeButton } from "../darkmode/darkmodebutton";
 
 export const NavigationBar: React.FC = () => {
   const [activeNavItem, setActiveNavItem] = useState<NavItemType>(
@@ -28,7 +29,8 @@ export const NavigationBar: React.FC = () => {
       />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav variant="pills" className="flex-column">
-          <Nav.Item className="mt-4">
+          <DarkModeButton />
+          <Nav.Item className="mt-3">
             {/* For not it is / but when login implemented should be /dashboard */}
             <Nav.Link
               href={ROUTES.DASHBOARD}
