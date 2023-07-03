@@ -1,6 +1,13 @@
 import { Button } from "react-bootstrap";
 import { useTheme } from "./themeprovider";
 
+type theme = "light" | "dark";
+
+const THEME_ENUM: { [key: string]: theme } = {
+  LIGHT: "light",
+  DARK: "dark",
+};
+
 const DarkModeButtonStyle: React.CSSProperties = {
   backgroundColor: "transparent",
   border: "none",
@@ -10,14 +17,15 @@ export const DarkModeButton = () => {
   const [currentTheme, setTheme] = useTheme();
 
   const toggleTheme = () => {
-    const newTheme = currentTheme === "light" ? "dark" : "light";
+    const newTheme =
+      currentTheme === THEME_ENUM.LIGHT ? THEME_ENUM.DARK : THEME_ENUM.LIGHT;
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
   };
 
   return (
     <Button onClick={toggleTheme} style={DarkModeButtonStyle}>
-      {currentTheme === "light" ? (
+      {currentTheme === THEME_ENUM.LIGHT ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="25"
