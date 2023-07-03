@@ -29,7 +29,8 @@ export const NavigationBar: React.FC = () => {
       />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav variant="pills" className="flex-column">
-          <Nav.Item className="mt-4">
+          <DarkModeButton />
+          <Nav.Item className="mt-3">
             {/* For not it is / but when login implemented should be /dashboard */}
             <Nav.Link
               href={ROUTES.DASHBOARD}
@@ -49,7 +50,6 @@ export const NavigationBar: React.FC = () => {
               Charts
             </Nav.Link>
           </Nav.Item>
-          <DarkModeButton />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
