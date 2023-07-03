@@ -17,7 +17,9 @@ import { CaseTable } from "./casetable/casetable";
 import { CaseTools } from "./casetools/casetools";
 
 export const Dashboard: React.FC = () => {
-  const [caseData, setCaseData] = useState<CaseDataDashboardType[]>([]);
+  const [caseData, setCaseData] = useState<CaseDataDashboardType[] | undefined>(
+    []
+  );
   const [searchedCaseDescription, setSearchedCaseDescription] =
     useState<string>("");
   const [filteredCaseStatus, setFilteredCaseStatus] =
@@ -32,7 +34,7 @@ export const Dashboard: React.FC = () => {
   );
 
   useEffect(() => {
-    // API call to obtain the backend data in JSON
+    // Mock data for now
     const data: CaseDataDashboardType[] = [
       {
         datereferral: new Date(2023, 7, 10, 21, 0),
@@ -70,7 +72,7 @@ export const Dashboard: React.FC = () => {
         datereferral: new Date(2023, 6, 3, 7, 0),
         caseid: "22c350a1-230f-4aac-be03-76f6e721d7fd",
         description: "Testing",
-        scamtype: CASE_SCAMTYPE_ENUM.JOB_SCAM,
+        scamtype: CASE_SCAMTYPE_ENUM.PARCEL_SCAM,
         assignee: "Bob",
         status: CASE_STATUS_ENUM.PENDING,
       },
@@ -78,7 +80,7 @@ export const Dashboard: React.FC = () => {
         datereferral: new Date(2023, 6, 15, 6, 0),
         caseid: "c147b962-073b-4a6f-a8ba-a020c2ef0ecd",
         description: "Testing again testing again testing again",
-        scamtype: CASE_SCAMTYPE_ENUM.PARCEL_SCAM,
+        scamtype: CASE_SCAMTYPE_ENUM.LOVE_SCAM,
         assignee: "Adam",
         status: CASE_STATUS_ENUM.PENDING,
       },
@@ -102,23 +104,38 @@ export const Dashboard: React.FC = () => {
         datereferral: new Date(2023, 2, 17, 7, 0),
         caseid: "c247b962-073b-4a6f-a8ba-a020c2ef0ecd",
         description: "Testing again testing again testing again",
-        scamtype: CASE_SCAMTYPE_ENUM.PARCEL_SCAM,
+        scamtype: CASE_SCAMTYPE_ENUM.ECOMMERCE_SCAM,
         assignee: "Adam",
         status: CASE_STATUS_ENUM.PENDING,
       },
       {
-        datereferral: new Date(2023, 3, 10, 2, 0),
+        datereferral: new Date(2023, 1, 10, 18, 0),
         caseid: "6247b962-073b-4a6f-a8ba-a020c2ef0ecd",
-        description: "Testing againnn",
-        scamtype: CASE_SCAMTYPE_ENUM.PARCEL_SCAM,
+        description: "Testingo",
+        scamtype: CASE_SCAMTYPE_ENUM.JOB_SCAM,
         assignee: "Tom",
-        status: CASE_STATUS_ENUM.PENDING,
+        status: CASE_STATUS_ENUM.ACTIVATED,
+      },
+      {
+        datereferral: new Date(2023, 4, 2, 23, 0),
+        caseid: "io8j3562-073b-4a6f-a8ba-a020c2ef0ecd",
+        description: "Testt",
+        scamtype: CASE_SCAMTYPE_ENUM.ECOMMERCE_SCAM,
+        assignee: "Adam",
+        status: CASE_STATUS_ENUM.ACTIVATED,
       },
     ];
     data.sort((a, b) => {
       return b.datereferral.getTime() - a.datereferral.getTime();
     });
     setCaseData(data);
+
+    // getAllCases().then((data: CaseDataDashboardType[]) => {
+    //   data.sort((a, b) => {
+    //     return b.datereferral.getTime() - a.datereferral.getTime();
+    //   });
+    //   setCaseData(data);
+    // });
   }, []);
 
   return (

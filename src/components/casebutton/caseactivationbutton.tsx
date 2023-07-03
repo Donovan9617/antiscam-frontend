@@ -1,7 +1,16 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { editDashboardStatusCase } from "../../api/api";
+import { CASE_STATUS_ENUM } from "../../types/enums";
+import { CaseDataDashboardType } from "../../types/types";
 
-export const CaseActivationButton: React.FC = () => {
+interface CaseActivationButtonProps {
+  data: CaseDataDashboardType;
+}
+
+export const CaseActivationButton: React.FC<CaseActivationButtonProps> = ({
+  data,
+}: CaseActivationButtonProps) => {
   const [showConfirmation, setShowConfirmation] = useState<boolean | undefined>(
     false
   );
@@ -10,8 +19,8 @@ export const CaseActivationButton: React.FC = () => {
     setShowConfirmation(true);
   };
 
-  const handleConfirmActivate: () => void = () => {
-    // Send API to the backend to update the status of the case to Activated
+  const handleConfirmActivate: () => void = async () => {
+    await editDashboardStatusCase(data, CASE_STATUS_ENUM.ACTIVATED);
     setShowConfirmation(false);
   };
 

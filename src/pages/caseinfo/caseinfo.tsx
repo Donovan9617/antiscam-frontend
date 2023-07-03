@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Image } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import back from "../../assets/images/back.png";
-import edit from "../../assets/images/edit.png";
 import { ROUTES } from "../../config";
+import back from "../../images/back.png";
+import edit from "../../images/edit.png";
 import {
   BANK_ACCOUNT_ENUM,
   CASE_SCAMTYPE_ENUM,
@@ -30,9 +30,7 @@ export const CaseInfo: React.FC = () => {
   };
 
   useEffect(() => {
-    // API call to backend to obtain JSON with this obtained caseid
-    // Since no DB yet, we assume this is the returned data
-
+    // Mock data for now
     const data: CaseInfoDataType = {
       caseid: "c17ff314-87f0-49e5-8adc-a5c3dceaa44b",
       datereferral: new Date(2023, 5, 10, 21, 0),
@@ -48,6 +46,11 @@ export const CaseInfo: React.FC = () => {
       // casefile: new File([], "case_info.pdf", { type: "application/pdf" }),
     };
     setCaseInformation(data);
+
+    // getCaseInfo(caseid).then((data: CaseInfoDataType) => {
+    //   setCaseInformation(data);
+    // });
+    // setCaseInformation(data);
   }, [editMode]);
 
   return (

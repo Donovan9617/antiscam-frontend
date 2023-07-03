@@ -15,10 +15,6 @@ interface FilterCaseProps {
   setFilteredCaseDate: (date: FilteredCaseDateType) => void;
 }
 
-const filterCaseStyle: React.CSSProperties = {
-  marginRight: 10,
-};
-
 export const FilterCase: React.FC<FilterCaseProps> = ({
   filteredCaseStatus,
   setFilteredCaseStatus,
@@ -128,7 +124,7 @@ export const FilterCase: React.FC<FilterCaseProps> = ({
         </Popover>
       }
     >
-      <Button style={filterCaseStyle}>
+      <Button>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

@@ -2,10 +2,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { NavigationBar } from "./components/navigationbar/navigationbar";
 import { ROUTES } from "./config";
 import { CaseInfo } from "./pages/caseinfo/caseinfo";
 import { Dashboard } from "./pages/dashboard/dashboard";
-import { NavigationBar } from "./pages/navigationbar/navigationbar";
 import { NewCase } from "./pages/newcase/newcase";
 
 export const App: React.FC = () => {

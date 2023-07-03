@@ -1,17 +1,29 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { editDashboardStatusCase } from "../../api/api";
+import { CASE_STATUS_ENUM } from "../../types/enums";
+import { CaseDataDashboardType } from "../../types/types";
 
-export const CaseRejectedButton: React.FC = () => {
+interface CaseRejectedButtonProps {
+  data: CaseDataDashboardType;
+}
+
+export const CaseRejectedButton: React.FC<CaseRejectedButtonProps> = ({
+  data,
+}: CaseRejectedButtonProps) => {
   const [showConfirmation, setShowConfirmation] = useState<boolean | undefined>(
     false
   );
+
   const handleReject: () => void = () => {
     setShowConfirmation(true);
   };
-  const handleConfirmReject: () => void = () => {
-    // Send API to the backend to update the status of the case to Rejected
+
+  const handleConfirmReject: () => void = async () => {
+    await editDashboardStatusCase(data, CASE_STATUS_ENUM.REJECTED);
     setShowConfirmation(false);
   };
+
   const handleCloseConfirmation: () => void = () => {
     setShowConfirmation(false);
   };

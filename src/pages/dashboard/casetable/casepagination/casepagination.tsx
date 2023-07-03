@@ -3,6 +3,7 @@ import { Pagination } from "react-bootstrap";
 import { CaseDataDashboardType } from "../../../../types/types";
 
 interface CasePaginationProps {
+  caseData: CaseDataDashboardType[] | undefined;
   caseDataToShow: CaseDataDashboardType[] | undefined;
   ITEMS_PER_PAGE: number;
   currentPage: number;
@@ -10,6 +11,7 @@ interface CasePaginationProps {
 }
 
 export const CasePagination: React.FC<CasePaginationProps> = ({
+  caseData,
   caseDataToShow,
   ITEMS_PER_PAGE,
   currentPage,
@@ -17,6 +19,12 @@ export const CasePagination: React.FC<CasePaginationProps> = ({
 }: CasePaginationProps) => {
   const totalPages =
     caseDataToShow && Math.ceil(caseDataToShow.length / ITEMS_PER_PAGE);
+
+  const caseDataCurrentPage: CaseDataDashboardType[] | undefined =
+    caseDataToShow?.slice(
+      (currentPage - 1) * ITEMS_PER_PAGE,
+      currentPage * ITEMS_PER_PAGE
+    );
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -74,5 +82,14 @@ export const CasePagination: React.FC<CasePaginationProps> = ({
     return items;
   };
 
-  return <Pagination className="mt-2">{renderPaginationItems()}</Pagination>;
+  return (
+    <div className="d-flex justify-content-between">
+      <Pagination>{renderPaginationItems()}</Pagination>
+      <div>
+        Showing{" "}
+        <strong>{caseDataCurrentPage && caseDataCurrentPage.length}</strong> of{" "}
+        <strong>{caseData && caseData.length}</strong> results
+      </div>
+    </div>
+  );
 };

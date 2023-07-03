@@ -15,59 +15,58 @@ export const CaseInfoGrid: React.FC<CaseInfoGridProps> = ({
           <h6>Date Referral:</h6>
           <p>
             {" "}
-            {caseInformation &&
-              caseInformation.datereferral.toLocaleString("en-US", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-              })}
+            {caseInformation?.datereferral.toLocaleString("en-US", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            })}
             ,{" "}
-            {caseInformation &&
-              caseInformation.datereferral.toLocaleTimeString("en-US", {
-                hour: "numeric",
-                minute: "numeric",
-              })}
+            {caseInformation?.datereferral.toLocaleTimeString("en-US", {
+              hour: "numeric",
+              minute: "numeric",
+            })}
           </p>
         </Col>
         <Col className="mb-4" md="4">
           <h6>Phone Number:</h6>
-          <p>{caseInformation && caseInformation.phonenumber}</p>
+          <p>{caseInformation?.phonenumber}</p>
         </Col>
         <Col className="mb-4" md="4">
           <h6>Scam Type:</h6>
-          <p>{caseInformation && caseInformation.scamtype}</p>
+          <p>{caseInformation?.scamtype}</p>
         </Col>
-      </Row>
+      </Row>{" "}
       <Row>
         <Col className="mb-4" md="4">
           <h6>Bank Account:</h6>
-          <p>{caseInformation && caseInformation.bankaccount}</p>
+          <p>{caseInformation?.bankaccount}</p>
         </Col>
         <Col className="mb-4" md="4">
           <h6>Bank Account Number:</h6>
-          <p>{caseInformation && caseInformation.accountnumber}</p>
+          <p>{caseInformation?.accountnumber}</p>
         </Col>
         <Col className="mb-4" md="4">
           <h6>Amount Scammed (S$):</h6>
-          <p>{caseInformation && caseInformation.amountscammed}</p>
+          <p>{caseInformation?.amountscammed}</p>
         </Col>
-      </Row>
+      </Row>{" "}
       <Row>
         <Col className="mb-4" md="4">
           <h6>Assignee:</h6>
-          <p>{caseInformation && caseInformation.assignee}</p>
+          <p>{caseInformation?.assignee}</p>
         </Col>
         <Col className="mb-4" md="4">
           <h6>Status:</h6>
-          <p>{caseInformation && caseInformation.status}</p>
+          <p>{caseInformation?.status}</p>
         </Col>
         <Col className="mb-4" md="4">
           <h6>Case File (Optional):</h6>
-          {caseInformation && caseInformation.casefile ? (
+          {caseInformation?.casefile ? (
             <div>
+              ?{" "}
               <a
-                href={URL.createObjectURL(caseInformation.casefile)}
-                download={caseInformation.casefile.name}
+                href={URL.createObjectURL(caseInformation?.casefile)}
+                download={caseInformation?.casefile.name}
                 style={{ color: "black" }}
               >
                 {caseInformation.casefile.name}
@@ -80,7 +79,7 @@ export const CaseInfoGrid: React.FC<CaseInfoGridProps> = ({
       </Row>
       <Row>
         <h6>Case Description:</h6>
-        <p>{caseInformation && caseInformation.description}</p>
+        <p>{caseInformation?.description}</p>
       </Row>
     </Container>
   );

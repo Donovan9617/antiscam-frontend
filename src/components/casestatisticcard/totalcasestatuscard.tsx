@@ -1,21 +1,21 @@
 import { Card } from "react-bootstrap";
-import { CASE_STATUS_ENUM } from "../../../../types/enums";
-import { CaseDataDashboardType } from "../../../../types/types";
+import { CASE_STATUS_ENUM } from "../../types/enums";
+import { CaseDataDashboardType } from "../../types/types";
 
-interface StatusScamCard {
-  caseData: CaseDataDashboardType[];
+interface TotalCaseStatusCardProps {
+  caseData: CaseDataDashboardType[] | undefined;
 }
 
-export const StatusScamsCard: React.FC<StatusScamCard> = ({
+export const TotalCaseStatusCard: React.FC<TotalCaseStatusCardProps> = ({
   caseData,
-}: StatusScamCard) => {
-  const activatedCases = caseData.filter(
+}: TotalCaseStatusCardProps) => {
+  const activatedCases = caseData?.filter(
     (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.ACTIVATED
   );
-  const pendingactivationCases = caseData.filter(
+  const pendingactivationCases = caseData?.filter(
     (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.PENDING
   );
-  const rejectedCases = caseData.filter(
+  const rejectedCases = caseData?.filter(
     (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.REJECTED
   );
   return (
@@ -27,11 +27,11 @@ export const StatusScamsCard: React.FC<StatusScamCard> = ({
       <Card.Body>
         <Card.Title>Total Case Status</Card.Title>
         <Card.Text>
-          Activated: {activatedCases.length}
+          Activated: {activatedCases?.length}
           <br />
-          Pending: {pendingactivationCases.length}
+          Pending: {pendingactivationCases?.length}
           <br />
-          Rejected: {rejectedCases.length}
+          Rejected: {rejectedCases?.length}
         </Card.Text>
       </Card.Body>
     </Card>

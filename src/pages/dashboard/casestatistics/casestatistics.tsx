@@ -1,10 +1,10 @@
 import { Container, Row } from "react-bootstrap";
+import { MostFrequentScamCard } from "../../../components/casestatisticcard/mostfrequentscamcard";
+import { TotalCaseStatusCard } from "../../../components/casestatisticcard/totalcasestatuscard";
 import { CaseDataDashboardType } from "../../../types/types";
-import { MostFrequentScamCard } from "./casestatisticcard/mostfrequentscamcard";
-import { StatusScamsCard } from "./casestatisticcard/statusscamscard";
 
 interface CaseStatisticsProps {
-  caseData: CaseDataDashboardType[];
+  caseData: CaseDataDashboardType[] | undefined;
 }
 
 export const CaseStatistics: React.FC<CaseStatisticsProps> = ({
@@ -13,7 +13,7 @@ export const CaseStatistics: React.FC<CaseStatisticsProps> = ({
   return (
     <Container>
       <Row>
-        <StatusScamsCard caseData={caseData} />
+        <TotalCaseStatusCard caseData={caseData} />
         <MostFrequentScamCard caseData={caseData} />
       </Row>
     </Container>

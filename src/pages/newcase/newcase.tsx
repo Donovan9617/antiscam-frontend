@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Container, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import back from "../../assets/images/back.png";
 import { ROUTES } from "../../config";
+import back from "../../images/back.png";
 import { NewCaseForm } from "./newcaseform/newcaseform";
 
 export const NewCase: React.FC = () => {
