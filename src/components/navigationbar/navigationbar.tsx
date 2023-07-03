@@ -3,6 +3,7 @@ import { Nav, Navbar } from "react-bootstrap";
 import { ROUTES } from "../../config";
 import { NAV_ITEMS_ENUM } from "../../types/enums";
 import { NavItemType } from "../../types/types";
+import { DarkModeButton } from "../darkmode/darkmodebutton";
 
 export const NavigationBar: React.FC = () => {
   const [activeNavItem, setActiveNavItem] = useState<NavItemType>(
@@ -48,6 +49,7 @@ export const NavigationBar: React.FC = () => {
               Charts
             </Nav.Link>
           </Nav.Item>
+          <DarkModeButton />
         </Nav>
       </Navbar.Collapse>
     </Navbar>

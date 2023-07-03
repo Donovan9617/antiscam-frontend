@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Container, Row } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ThemeProvider from "./components/darkmode/themeprovider";
 import { NavigationBar } from "./components/navigationbar/navigationbar";
 import { ROUTES } from "./config";
 import { CaseInfo } from "./pages/caseinfo/caseinfo";
@@ -24,21 +25,23 @@ export const App: React.FC = () => {
   };
 
   return (
-    <BrowserRouter>
-      <Container fluid>
-        <Row>
-          <Col sm={1} style={NavigationColStyle}>
-            <NavigationBar />
-          </Col>
-          <Col sm={11} style={PageColStyle}>
-            <Routes>
-              <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
-              <Route path={ROUTES.NEWCASE} element={<NewCase />} />
-              <Route path={ROUTES.CASEINFO} element={<CaseInfo />} />
-            </Routes>
-          </Col>
-        </Row>
-      </Container>
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Container fluid>
+          <Row>
+            <Col sm={1} style={NavigationColStyle}>
+              <NavigationBar />
+            </Col>
+            <Col sm={11} style={PageColStyle}>
+              <Routes>
+                <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
+                <Route path={ROUTES.NEWCASE} element={<NewCase />} />
+                <Route path={ROUTES.CASEINFO} element={<CaseInfo />} />
+              </Routes>
+            </Col>
+          </Row>
+        </Container>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };

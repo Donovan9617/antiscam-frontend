@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Image } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTheme } from "../../components/darkmode/themeprovider";
 import { ROUTES } from "../../config";
 import back from "../../images/back.png";
 import edit from "../../images/edit.png";
@@ -20,6 +21,18 @@ export const CaseInfo: React.FC = () => {
     CaseInfoDataType | undefined
   >();
   const [editMode, setEditMode] = useState<boolean>(false);
+  const [currentTheme] = useTheme();
+
+  const CaseInfoIconStyle: React.CSSProperties = {
+    width: "30px",
+    height: "30px",
+    filter: currentTheme === "dark" ? "invert(0.7)" : "none",
+  };
+
+  const CaseInfoButtonStyle: React.CSSProperties = {
+    backgroundColor: "transparent",
+    border: "none",
+  };
 
   const handleBack: () => void = () => {
     editMode ? setEditMode(!editMode) : navigate(ROUTES.DASHBOARD);
@@ -59,12 +72,8 @@ export const CaseInfo: React.FC = () => {
         className="mt-4"
         style={{ display: "flex", alignItems: "center" }}
       >
-        <Button onClick={handleBack} style={{ backgroundColor: "transparent" }}>
-          <Image
-            src={back}
-            alt="back"
-            style={{ width: "30px", height: "30px" }}
-          />
+        <Button onClick={handleBack} style={CaseInfoButtonStyle}>
+          <Image src={back} alt="back" style={CaseInfoIconStyle} />
         </Button>
         <h2 style={{ textAlign: "center", flex: 1 }}>
           {editMode ? "Edit " : ""}
@@ -73,15 +82,8 @@ export const CaseInfo: React.FC = () => {
         {editMode ? (
           <></>
         ) : (
-          <Button
-            onClick={handleEditCaseInfo}
-            style={{ backgroundColor: "transparent" }}
-          >
-            <Image
-              src={edit}
-              alt="edit"
-              style={{ width: "30px", height: "30px" }}
-            />
+          <Button onClick={handleEditCaseInfo} style={CaseInfoButtonStyle}>
+            <Image src={edit} alt="edit" style={CaseInfoIconStyle} />
           </Button>
         )}
       </Container>
