@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-import { CaseActivationButton } from "../../../components/casebutton/caseactivationbutton";
-import { CaseRejectedButton } from "../../../components/casebutton/caserejectedbutton";
 import {
   CASE_STATUS_ENUM,
   FILTERED_CASE_STATUS_ENUM,
   SORT_CASE_DATE_ENUM,
-} from "../../../types/enums";
+} from "../../types/enums";
 import {
   CaseDataDashboardType,
   FilteredCaseDateType,
   FilteredCaseStatusType,
   SortCaseDateType,
-} from "../../../types/types";
+} from "../../types/types";
+import { CaseActivationButton } from "../casebutton/caseactivationbutton";
+import { CaseRejectedButton } from "../casebutton/caserejectedbutton";
 import { CasePagination } from "./casepagination/casepagination";
 
 interface CaseTableProps {

@@ -6,6 +6,7 @@ import ThemeProvider from "./components/darkmode/themeprovider";
 import { NavigationBar } from "./components/navigationbar/navigationbar";
 import { ROUTES } from "./config";
 import { CaseInfo } from "./pages/caseinfo/caseinfo";
+import { Charts } from "./pages/charts/charts";
 import { Dashboard } from "./pages/dashboard/dashboard";
 import { NewCase } from "./pages/newcase/newcase";
 
@@ -37,6 +38,7 @@ export const App: React.FC = () => {
                 <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
                 <Route path={ROUTES.NEWCASE} element={<NewCase />} />
                 <Route path={ROUTES.CASEINFO} element={<CaseInfo />} />
+                <Route path={ROUTES.CHARTS} element={<Charts />} />
               </Routes>
             </Col>
           </Row>

@@ -1,7 +1,7 @@
 import { Container, Row } from "react-bootstrap";
-import { MostFrequentScamCard } from "../../../components/casestatisticcard/mostfrequentscamcard";
-import { TotalCaseStatusCard } from "../../../components/casestatisticcard/totalcasestatuscard";
-import { CaseDataDashboardType } from "../../../types/types";
+import { CaseDataDashboardType } from "../../types/types";
+import { MostFrequentScamCard } from "../casestatisticcard/mostfrequentscamcard";
+import { TotalCaseStatusCard } from "../casestatisticcard/totalcasestatuscard";
 
 interface CaseStatisticsProps {
   caseData: CaseDataDashboardType[] | undefined;

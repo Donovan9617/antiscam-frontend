@@ -2,7 +2,7 @@ import {
   FilteredCaseDateType,
   FilteredCaseStatusType,
   SortCaseDateType,
-} from "../../../types/types";
+} from "../../types/types";
 import { FilterCase } from "./casefilter/casefilter";
 import { CaseNewButton } from "./casenewbutton/casenewbutton";
 import { CaseSearch } from "./casesearch/casesearch";

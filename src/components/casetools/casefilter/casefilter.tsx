@@ -3,11 +3,11 @@ import { Button, Form, OverlayTrigger, Popover } from "react-bootstrap";
 import {
   CASE_STATUS_ENUM,
   FILTERED_CASE_STATUS_ENUM,
-} from "../../../../types/enums";
+} from "../../../types/enums";
 import {
   FilteredCaseDateType,
   FilteredCaseStatusType,
-} from "../../../../types/types";
+} from "../../../types/types";
 
 interface FilterCaseProps {
   filteredCaseStatus: FilteredCaseStatusType;
