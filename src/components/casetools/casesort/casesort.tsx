@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from "react";
 import { Button, Form, OverlayTrigger, Popover } from "react-bootstrap";
-import { CASE_DATE_ENUM, SORT_CASE_DATE_ENUM } from "../../../../types/enums";
-import { SortCaseDateType } from "../../../../types/types";
+import { CASE_DATE_ENUM, SORT_CASE_DATE_ENUM } from "../../../types/enums";
+import { SortCaseDateType } from "../../../types/types";
 
 interface SortCaseProps {
   sortedCaseDate: SortCaseDateType;
