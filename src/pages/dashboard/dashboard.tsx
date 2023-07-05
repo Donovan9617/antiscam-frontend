@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { CaseStatistics } from "../../components/casestatistics/casestatistics";
+import { CaseTable } from "../../components/casetable/casetable";
+import { CaseTools } from "../../components/casetools/casetools";
 import {
   CASE_SCAMTYPE_ENUM,
   CASE_STATUS_ENUM,
@@ -12,9 +15,6 @@ import {
   FilteredCaseStatusType,
   SortCaseDateType,
 } from "../../types/types";
-import { CaseStatistics } from "./casestatistics/casestatistics";
-import { CaseTable } from "./casetable/casetable";
-import { CaseTools } from "./casetools/casetools";
 
 export const Dashboard: React.FC = () => {
   const [caseData, setCaseData] = useState<CaseDataDashboardType[] | undefined>(

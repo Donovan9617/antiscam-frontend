@@ -3,4 +3,5 @@ export const ROUTES = {
   DASHBOARD: "/",
   NEWCASE: "/new-case",
   CASEINFO: "/case/:caseid",
+  CHARTS: "/charts",
 };
