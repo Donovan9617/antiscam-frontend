@@ -2,7 +2,7 @@
 
 ## Description
 
-ScamWatch is a tool built for <a href="www.htx.gov.sg">HTX Gov.SG</a> to assist police investigators in the fight against scams. It provides scam case file management features, simple scam statistics, and data visualisation charts.
+ScamWatch is a tool built for <a href="www.htx.gov.sg">HTX Gov.SG</a> to assist police investigators in the fight against scams. It provides scam case file management features, data visualisation charts, and simple scam statistics.
 
 <p align="center">
 <img src="src/images/preview.png" />
@@ -47,6 +47,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - By `Date`
 - Pagination
 
+### 📈&nbsp; Data visualisation charts
+
+- Fund Flow Chart
+- Fund Recovery Chart
+- Typography Recovery Chart
+
 ### 🔢&nbsp;Simple scam statistics
 
 - Total Case Status
@@ -57,7 +63,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - Dark theme
 - Mobile responsive
-
-### 📈&nbsp; Visualisation charts
-
-- Work in progress
