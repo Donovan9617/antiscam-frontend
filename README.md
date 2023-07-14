@@ -2,7 +2,7 @@
 
 ## Description
 
-ScamWatch is a tool built for <a href="www.htx.gov.sg">HTX Gov.SG</a> to assist police investigators in the fight against scams. It provides scam case file management features, data visualisation charts, and simple scam statistics.
+ScamWatch is a tool which provides scam case file management features, data visualisation charts, and simple scam statistics.
 
 <p align="center">
 <img src="src/images/preview.png" />
