@@ -1,12 +1,19 @@
 export type NavItemType = "dashboard" | "charts";
 
-export type CaseStatusType = "" | "None" | "Activated" | "Pending" | "Rejected";
+export type CaseStatusType =
+  | ""
+  | "None"
+  | "Activated"
+  | "Pending"
+  | "Rejected"
+  | "Closed";
 
 export type FilteredCaseStatusType =
   | "none"
   | "activated"
   | "pending"
-  | "rejected";
+  | "rejected"
+  | "closed";
 
 export type CaseDateType = "New to Old" | "Old to New";
 

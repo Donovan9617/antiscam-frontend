@@ -5,6 +5,7 @@ export const CASE_STATUS_ENUM = {
   ACTIVATED: "Activated",
   PENDING: "Pending",
   REJECTED: "Rejected",
+  CLOSED: "Closed",
 } as const;
 
 export const FILTERED_CASE_STATUS_ENUM = {
@@ -12,6 +13,7 @@ export const FILTERED_CASE_STATUS_ENUM = {
   ACTIVATED: "activated",
   PENDING: "pending",
   REJECTED: "rejected",
+  CLOSED: "closed",
 } as const;
 
 export const CASE_DATE_ENUM = {

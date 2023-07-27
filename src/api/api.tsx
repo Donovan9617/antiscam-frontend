@@ -58,15 +58,15 @@ export const createNewCase = async (data: CaseInfoDataType) => {
   }
 };
 
-export const editCaseInfo = async (data: CaseInfoDataType) => {
+export const editCaseInfo = async (caseDataItem: CaseInfoDataType) => {
   try {
     // Endpoint not configured
-    const response = await fetch(`/api/cases/${data.caseid}`, {
+    const response = await fetch(`/api/cases/${caseDataItem.caseid}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(caseDataItem),
     });
     if (!response.ok) {
       throw new Error("Failed to save case information");
@@ -81,19 +81,19 @@ export const editCaseInfo = async (data: CaseInfoDataType) => {
 };
 
 export const editDashboardStatusCase = async (
-  data: CaseDataDashboardType,
+  caseDataItem: CaseDataDashboardType,
   status: CaseStatusType
 ) => {
   try {
-    data.status = status;
+    caseDataItem.status = status;
     console.log(status);
     // Endpoint not configured
-    const response = await fetch(`/api/cases/${data.caseid}`, {
+    const response = await fetch(`/api/cases/${caseDataItem.caseid}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(caseDataItem),
     });
     if (!response.ok) {
       throw new Error("Failed to save case information");

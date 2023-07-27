@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import { CASE_STATUS_ENUM } from "../../types/enums";
 import { CaseDataDashboardType } from "../../types/types";
 
@@ -18,6 +18,9 @@ export const TotalCaseStatusCard: React.FC<TotalCaseStatusCardProps> = ({
   const rejectedCases = caseData?.filter(
     (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.REJECTED
   );
+  const closedCases = caseData?.filter(
+    (caseDataItem) => caseDataItem.status === CASE_STATUS_ENUM.CLOSED
+  );
   return (
     <Card
       border="primary"
@@ -27,11 +30,14 @@ export const TotalCaseStatusCard: React.FC<TotalCaseStatusCardProps> = ({
       <Card.Body>
         <Card.Title>Total Case Status</Card.Title>
         <Card.Text>
-          Activated: {activatedCases?.length}
-          <br />
-          Pending: {pendingactivationCases?.length}
-          <br />
-          Rejected: {rejectedCases?.length}
+          <Row>
+            <Col>Activated: {activatedCases?.length}</Col>
+            <Col>Pending: {pendingactivationCases?.length}</Col>
+          </Row>
+          <Row>
+            <Col>Rejected: {rejectedCases?.length}</Col>
+            <Col>Closed: {closedCases?.length}</Col>
+          </Row>
         </Card.Text>
       </Card.Body>
     </Card>
