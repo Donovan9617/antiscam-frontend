@@ -39,18 +39,16 @@ export const getCaseInfo = async (caseid: string) => {
 export const createNewCase = async (data: CaseInfoDataType) => {
   try {
     // Endpoint not configured
-    const response = await fetch("/api/new-case", {
+    const response = await fetch("/api/cases", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
-
     if (!response.ok) {
       throw new Error("Failed to save case information");
     }
-
     const jsonData = await response.json();
     console.log(jsonData);
     return jsonData as CaseInfoDataType;
