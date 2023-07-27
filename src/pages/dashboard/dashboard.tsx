@@ -151,7 +151,7 @@ export const Dashboard: React.FC = () => {
       <Container className="mt-2">
         <CaseStatistics caseData={caseData} />
       </Container>
-      <Container className="mt-3">
+      <Container className="mt-2">
         <CaseTools
           filteredCaseStatus={filteredCaseStatus}
           setFilteredCaseStatus={setFilteredCaseStatus}

@@ -14,6 +14,7 @@ import {
   SortCaseDateType,
 } from "../../types/types";
 import { CaseActivationButton } from "../casebutton/caseactivationbutton";
+import { CaseCloseButton } from "../casebutton/caseclosebutton";
 import { CaseRejectedButton } from "../casebutton/caserejectedbutton";
 import { CasePagination } from "./casepagination/casepagination";
 
@@ -182,6 +183,10 @@ export const CaseTable: React.FC<CaseTableProps> = ({
                       <div style={caseTableActionDataStyle}>
                         <CaseActivationButton data={caseDataItem} />
                         <CaseRejectedButton data={caseDataItem} />
+                      </div>
+                    ) : caseDataItem.status === CASE_STATUS_ENUM.ACTIVATED ? (
+                      <div style={caseTableActionDataStyle}>
+                        <CaseCloseButton data={caseDataItem} />
                       </div>
                     ) : (
                       "-"
