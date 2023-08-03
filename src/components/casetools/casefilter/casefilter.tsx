@@ -4,25 +4,15 @@ import {
   CASE_STATUS_ENUM,
   FILTERED_CASE_STATUS_ENUM,
 } from "../../../types/enums";
-import {
-  FilteredCaseDateType,
-  FilteredCaseStatusType,
-} from "../../../types/types";
-import { FilterContext } from "../../context";
+import { FilteredCaseStatusType } from "../../../types/types";
+import { FilterContext } from "../../filtercontext";
 
-interface FilterCaseProps {
-  setFilteredCaseStatus: (status: FilteredCaseStatusType) => void;
-  setFilteredCaseDate: (date: FilteredCaseDateType) => void;
-}
-
-export const FilterCase: React.FC<FilterCaseProps> = ({
-  setFilteredCaseStatus,
-  setFilteredCaseDate,
-}: FilterCaseProps) => {
+export const FilterCase: React.FC = () => {
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [applyDateFilter, setApplyDateFilter] = useState<boolean>(false);
-  const filteredCaseStatus = useContext(FilterContext);
+  const { filteredCaseStatus, setFilteredCaseStatus, setFilteredCaseDate } =
+    useContext(FilterContext);
 
   const handleFilteredCaseStatus = (event: ChangeEvent<HTMLInputElement>) => {
     const status = event.target.value as FilteredCaseStatusType;
