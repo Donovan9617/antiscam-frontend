@@ -1,19 +1,15 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useContext } from "react";
 import { Button, Form, OverlayTrigger, Popover } from "react-bootstrap";
 import { CASE_DATE_ENUM, SORT_CASE_DATE_ENUM } from "../../../types/enums";
 import { SortCaseDateType } from "../../../types/types";
+import { FilterContext } from "../../filtercontext";
 
-interface SortCaseProps {
-  sortedCaseDate: SortCaseDateType;
-  setSortedCaseDate: (date: SortCaseDateType) => void;
-}
-export const SortCase: React.FC<SortCaseProps> = ({
-  sortedCaseDate,
-  setSortedCaseDate,
-}: SortCaseProps) => {
+export const SortCase: React.FC = () => {
+  const { setSortedCaseDate } = useContext(FilterContext);
   const handleSortedCaseDate = (event: ChangeEvent<HTMLInputElement>) => {
     setSortedCaseDate(event.target.value as SortCaseDateType);
   };
+  const { sortedCaseDate } = useContext(FilterContext);
 
   return (
     <OverlayTrigger

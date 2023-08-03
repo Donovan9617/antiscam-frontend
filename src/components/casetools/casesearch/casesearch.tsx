@@ -1,8 +1,6 @@
+import { useContext } from "react";
 import { Form, InputGroup } from "react-bootstrap";
-
-interface CaseSearchProps {
-  setSearchedCaseDescription: (search: string) => void;
-}
+import { FilterContext } from "../../filtercontext";
 
 const caseSearchBarStyle: React.CSSProperties = {
   display: "flex",
@@ -21,9 +19,9 @@ const caseSearchIconTextStyle: React.CSSProperties = {
   cursor: "pointer",
 };
 
-export const CaseSearch: React.FC<CaseSearchProps> = ({
-  setSearchedCaseDescription,
-}: CaseSearchProps) => {
+export const CaseSearch: React.FC = () => {
+  const { setSearchedCaseDescription } = useContext(FilterContext);
+
   return (
     <Form style={caseSearchBarStyle}>
       <InputGroup>

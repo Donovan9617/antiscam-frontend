@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { CaseStatistics } from "../../components/casestatistics/casestatistics";
 import { CaseTable } from "../../components/casetable/casetable";
 import { CaseTools } from "../../components/casetools/casetools";
+import { FilterContext } from "../../components/filtercontext";
 import {
   CASE_SCAMTYPE_ENUM,
   CASE_STATUS_ENUM,
@@ -11,6 +12,7 @@ import {
 } from "../../types/enums";
 import {
   CaseDataDashboardType,
+  FilterContextValuesType,
   FilteredCaseDateType,
   FilteredCaseStatusType,
   SortCaseDateType,
@@ -32,6 +34,16 @@ export const Dashboard: React.FC = () => {
   const [sortedCaseDate, setSortedCaseDate] = useState<SortCaseDateType>(
     SORT_CASE_DATE_ENUM.NEW_TO_OLD
   );
+  const filterContextValues: FilterContextValuesType = {
+    filteredCaseStatus: filteredCaseStatus,
+    searchedCaseDescription: searchedCaseDescription,
+    filteredCaseDate: filteredCaseDate,
+    sortedCaseDate: sortedCaseDate,
+    setFilteredCaseStatus: setFilteredCaseStatus,
+    setSearchedCaseDescription: setSearchedCaseDescription,
+    setFilteredCaseDate: setFilteredCaseDate,
+    setSortedCaseDate: setSortedCaseDate,
+  };
 
   useEffect(() => {
     // Mock data for now
@@ -151,25 +163,14 @@ export const Dashboard: React.FC = () => {
       <Container className="mt-2">
         <CaseStatistics caseData={caseData} />
       </Container>
-      <Container className="mt-2">
-        <CaseTools
-          filteredCaseStatus={filteredCaseStatus}
-          setFilteredCaseStatus={setFilteredCaseStatus}
-          setSearchedCaseDescription={setSearchedCaseDescription}
-          setFilteredCaseDate={setFilteredCaseDate}
-          sortedCaseDate={sortedCaseDate}
-          setSortedCaseDate={setSortedCaseDate}
-        />
-      </Container>
-      <Container className="mt-3">
-        <CaseTable
-          caseData={caseData}
-          filteredCaseStatus={filteredCaseStatus}
-          searchedCaseDescription={searchedCaseDescription}
-          filteredCaseDate={filteredCaseDate}
-          sortedCaseDate={sortedCaseDate}
-        />
-      </Container>
+      <FilterContext.Provider value={filterContextValues}>
+        <Container className="mt-2">
+          <CaseTools />
+        </Container>
+        <Container className="mt-3">
+          <CaseTable caseData={caseData} />
+        </Container>
+      </FilterContext.Provider>
     </Container>
   );
 };

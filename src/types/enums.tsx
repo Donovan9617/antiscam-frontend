@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { FilteredCaseDateType } from "./types";
 
 export const CASE_STATUS_ENUM = {
   NONE: "None",
@@ -15,6 +16,15 @@ export const FILTERED_CASE_STATUS_ENUM = {
   REJECTED: "rejected",
   CLOSED: "closed",
 } as const;
+
+export const CASE_DESCRIPTION = {
+  EMPTY: "",
+} as const;
+
+export const FILTERED_CASE_DATE_EMPTY = {
+  startDate: "",
+  endDate: "",
+} as FilteredCaseDateType;
 
 export const CASE_DATE_ENUM = {
   NEW_TO_OLD: "Newest to Oldest",

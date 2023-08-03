@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -7,31 +7,19 @@ import {
   FILTERED_CASE_STATUS_ENUM,
   SORT_CASE_DATE_ENUM,
 } from "../../types/enums";
-import {
-  CaseDataDashboardType,
-  FilteredCaseDateType,
-  FilteredCaseStatusType,
-  SortCaseDateType,
-} from "../../types/types";
+import { CaseDataDashboardType } from "../../types/types";
 import { CaseActivationButton } from "../casebutton/caseactivationbutton";
 import { CaseCloseButton } from "../casebutton/caseclosebutton";
 import { CaseRejectedButton } from "../casebutton/caserejectedbutton";
+import { FilterContext } from "../filtercontext";
 import { CasePagination } from "./casepagination/casepagination";
 
 interface CaseTableProps {
   caseData: CaseDataDashboardType[] | undefined;
-  filteredCaseStatus: FilteredCaseStatusType;
-  searchedCaseDescription: string;
-  filteredCaseDate: FilteredCaseDateType;
-  sortedCaseDate: SortCaseDateType;
 }
 
 export const CaseTable: React.FC<CaseTableProps> = ({
   caseData,
-  filteredCaseStatus,
-  searchedCaseDescription,
-  filteredCaseDate,
-  sortedCaseDate,
 }: CaseTableProps) => {
   const [caseDataToShow, setCaseDataToShow] = useState<
     CaseDataDashboardType[] | undefined
@@ -41,6 +29,12 @@ export const CaseTable: React.FC<CaseTableProps> = ({
   const ITEMS_PER_PAGE = 10;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
+  const {
+    filteredCaseStatus,
+    searchedCaseDescription,
+    filteredCaseDate,
+    sortedCaseDate,
+  } = useContext(FilterContext);
 
   const caseTableStyle: React.CSSProperties = { textAlign: "center" };
   const caseTableHeaderRowStyle: React.CSSProperties = {

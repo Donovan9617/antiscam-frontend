@@ -19,9 +19,26 @@ export type CaseDateType = "New to Old" | "Old to New";
 
 export type SortCaseDateType = "newtoold" | "oldtonew";
 
+export type CaseDescription = "";
+
 export interface FilteredCaseDateType {
   startDate: string;
   endDate: string;
+}
+
+export interface FilterContextValuesType {
+  filteredCaseStatus: FilteredCaseStatusType;
+  searchedCaseDescription: string;
+  filteredCaseDate: FilteredCaseDateType;
+  sortedCaseDate: SortCaseDateType;
+  setFilteredCaseStatus: React.Dispatch<
+    React.SetStateAction<FilteredCaseStatusType>
+  >;
+  setSearchedCaseDescription: React.Dispatch<React.SetStateAction<string>>;
+  setFilteredCaseDate: React.Dispatch<
+    React.SetStateAction<FilteredCaseDateType>
+  >;
+  setSortedCaseDate: React.Dispatch<React.SetStateAction<SortCaseDateType>>;
 }
 
 export type CaseScamTypeType =
