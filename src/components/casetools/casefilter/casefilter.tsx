@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { Button, Form, OverlayTrigger, Popover } from "react-bootstrap";
 import {
   CASE_STATUS_ENUM,
@@ -8,21 +8,21 @@ import {
   FilteredCaseDateType,
   FilteredCaseStatusType,
 } from "../../../types/types";
+import { FilterContext } from "../../context";
 
 interface FilterCaseProps {
-  filteredCaseStatus: FilteredCaseStatusType;
   setFilteredCaseStatus: (status: FilteredCaseStatusType) => void;
   setFilteredCaseDate: (date: FilteredCaseDateType) => void;
 }
 
 export const FilterCase: React.FC<FilterCaseProps> = ({
-  filteredCaseStatus,
   setFilteredCaseStatus,
   setFilteredCaseDate,
 }: FilterCaseProps) => {
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [applyDateFilter, setApplyDateFilter] = useState<boolean>(false);
+  const filteredCaseStatus = useContext(FilterContext);
 
   const handleFilteredCaseStatus = (event: ChangeEvent<HTMLInputElement>) => {
     const status = event.target.value as FilteredCaseStatusType;

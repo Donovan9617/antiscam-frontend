@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { CaseStatistics } from "../../components/casestatistics/casestatistics";
 import { CaseTable } from "../../components/casetable/casetable";
 import { CaseTools } from "../../components/casetools/casetools";
+import { FilterContext } from "../../components/context";
 import {
   CASE_SCAMTYPE_ENUM,
   CASE_STATUS_ENUM,
@@ -151,25 +152,25 @@ export const Dashboard: React.FC = () => {
       <Container className="mt-2">
         <CaseStatistics caseData={caseData} />
       </Container>
-      <Container className="mt-2">
-        <CaseTools
-          filteredCaseStatus={filteredCaseStatus}
-          setFilteredCaseStatus={setFilteredCaseStatus}
-          setSearchedCaseDescription={setSearchedCaseDescription}
-          setFilteredCaseDate={setFilteredCaseDate}
-          sortedCaseDate={sortedCaseDate}
-          setSortedCaseDate={setSortedCaseDate}
-        />
-      </Container>
-      <Container className="mt-3">
-        <CaseTable
-          caseData={caseData}
-          filteredCaseStatus={filteredCaseStatus}
-          searchedCaseDescription={searchedCaseDescription}
-          filteredCaseDate={filteredCaseDate}
-          sortedCaseDate={sortedCaseDate}
-        />
-      </Container>
+      <FilterContext.Provider value={filteredCaseStatus}>
+        <Container className="mt-2">
+          <CaseTools
+            setFilteredCaseStatus={setFilteredCaseStatus}
+            setSearchedCaseDescription={setSearchedCaseDescription}
+            setFilteredCaseDate={setFilteredCaseDate}
+            sortedCaseDate={sortedCaseDate}
+            setSortedCaseDate={setSortedCaseDate}
+          />
+        </Container>
+        <Container className="mt-3">
+          <CaseTable
+            caseData={caseData}
+            searchedCaseDescription={searchedCaseDescription}
+            filteredCaseDate={filteredCaseDate}
+            sortedCaseDate={sortedCaseDate}
+          />
+        </Container>
+      </FilterContext.Provider>
     </Container>
   );
 };

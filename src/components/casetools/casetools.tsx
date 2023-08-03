@@ -9,7 +9,6 @@ import { CaseSearch } from "./casesearch/casesearch";
 import { SortCase } from "./casesort/casesort";
 
 interface CaseToolsProps {
-  filteredCaseStatus: FilteredCaseStatusType;
   setFilteredCaseStatus: (status: FilteredCaseStatusType) => void;
   setSearchedCaseDescription: (search: string) => void;
   setFilteredCaseDate: (date: FilteredCaseDateType) => void;
@@ -25,7 +24,6 @@ const caseToolsRowStyle: React.CSSProperties = {
 };
 
 export const CaseTools: React.FC<CaseToolsProps> = ({
-  filteredCaseStatus,
   setFilteredCaseStatus,
   setSearchedCaseDescription,
   setFilteredCaseDate,
@@ -36,7 +34,6 @@ export const CaseTools: React.FC<CaseToolsProps> = ({
     <div style={caseToolsRowStyle}>
       <CaseNewButton />
       <FilterCase
-        filteredCaseStatus={filteredCaseStatus}
         setFilteredCaseStatus={setFilteredCaseStatus}
         setFilteredCaseDate={setFilteredCaseDate}
       />
